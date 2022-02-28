@@ -47,6 +47,17 @@
                 },
                 {
                     "name": "",
+                    "id": "12d4e39e-0456-44f2-8c16-3ce6913268b3",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "976d9ca2-18d9-4353-b794-ce4e48cd8409",
                     "path": "",
                     "interactions": "",
@@ -57,7 +68,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "WASD",
+                    "name": "Arrows",
                     "id": "69984475-0ef2-444d-adf9-9af4466cb4f2",
                     "path": "2DVector",
                     "interactions": "",
@@ -93,6 +104,50 @@
                     "name": "right",
                     "id": "5d066a81-b42c-4067-8195-a7ec5784a365",
                     "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Controller",
+                    "id": "4f1080e6-1519-43dd-93f5-5d41a952566e",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "down",
+                    "id": "c2a52280-8e05-4fd0-9e53-0f47bff54dc1",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "0f8600db-1407-4116-9714-cd07c028d3f9",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "43b5fac6-c24a-425f-9d88-e6025b6b96ae",
+                    "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

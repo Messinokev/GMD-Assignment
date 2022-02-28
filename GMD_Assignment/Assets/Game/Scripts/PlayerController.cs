@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     private float speed = 8f;
 
-    private float jumpingPower = 7.5f;
+    private float jumpingPower = 11f;
 
     private bool isFacingRight = true;
 
