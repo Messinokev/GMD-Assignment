@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,15 +12,23 @@ public class PlayerController : MonoBehaviour
 
     public LayerMask groundLayer;
 
+    [SerializeField] private GameObject running;
+    [SerializeField] private GameObject idle;
+
     private float horizontal;
 
     private float speed = 8f;
 
-    private float jummpingPower = 10f;
+    private float jumpingPower = 7.5f;
 
     private bool isFacingRight = true;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        running.SetActive(false);
+        idle.SetActive(true);
+    }
+
     void Update()
     {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
@@ -37,13 +46,13 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed && IsGrounded())
         {
-            rb.velocity = new Vector2(rb.velocity.x, jummpingPower);
+            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
         }
-
+/*
         if (context.canceled && rb.velocity.y > 0f)
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-        }
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 1f);
+        }*/
     }
 
     private bool IsGrounded()
@@ -61,6 +70,8 @@ public class PlayerController : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
+        running.SetActive(true);
+        idle.SetActive(false);
         horizontal = context.ReadValue<Vector2>().x;
     }
 }
