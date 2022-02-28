@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
     private float speed = 8f;
 
-    private float jummpingPower = 16f;
+    private float jummpingPower = 10f;
 
     private bool isFacingRight = true;
 
@@ -32,8 +32,19 @@ public class PlayerController : MonoBehaviour
             Flip();
         }
     }
-    
-    
+
+    public void Jump(InputAction.CallbackContext context)
+    {
+        if (context.performed && IsGrounded())
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jummpingPower);
+        }
+
+        if (context.canceled && rb.velocity.y > 0f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+        }
+    }
 
     private bool IsGrounded()
     {
