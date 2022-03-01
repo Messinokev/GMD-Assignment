@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
     public LayerMask groundLayer;
     public Animator animator;
+    public TextMeshProUGUI coinsText;
 
     private float horizontal;
 
@@ -20,15 +22,21 @@ public class PlayerController : MonoBehaviour
     private float jumpingPower = 11f;
 
     private bool isFacingRight = true;
+    public static int coinCount;
+
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int IsJumping = Animator.StringToHash("IsJumping");
 
     private void Start()
     {
+        coinCount = 0;
+        SetCoinsText();
+
     }
 
     void Update()
     {
+        SetCoinsText();
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         if (!isFacingRight && horizontal > 0f)
         {
@@ -58,7 +66,10 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 1f);
         }*/
     }
-
+    private void SetCoinsText()
+    {
+        coinsText.text = coinCount.ToString();
+    }
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
