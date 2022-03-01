@@ -11,9 +11,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
 
     public LayerMask groundLayer;
-
-    [SerializeField] private GameObject running;
-    [SerializeField] private GameObject idle;
+    public Animator animator;
 
     private float horizontal;
 
@@ -22,11 +20,11 @@ public class PlayerController : MonoBehaviour
     private float jumpingPower = 11f;
 
     private bool isFacingRight = true;
+    private static readonly int Speed = Animator.StringToHash("Speed");
+    private static readonly int IsJumping = Animator.StringToHash("IsJumping");
 
     private void Start()
     {
-        running.SetActive(false);
-        idle.SetActive(true);
     }
 
     void Update()
@@ -47,7 +45,13 @@ public class PlayerController : MonoBehaviour
         if (context.performed && IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            animator.SetBool(IsJumping, true);
         }
+        else 
+        {
+            animator.SetBool(IsJumping, false);
+        }
+
 /*
         if (context.canceled && rb.velocity.y > 0f)
         {
@@ -70,8 +74,7 @@ public class PlayerController : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        running.SetActive(true);
-        idle.SetActive(false);
         horizontal = context.ReadValue<Vector2>().x;
+        animator.SetFloat(Speed, Mathf.Abs(horizontal));
     }
 }
