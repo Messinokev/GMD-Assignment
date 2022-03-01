@@ -1,33 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Parallax : MonoBehaviour
 {
-    private float length, startPosition;
+    private float _length, startPosition;
 
-    public GameObject camera;
+    public GameObject p_camera;
 
     public float parallaxEffect;
     // Start is called before the first frame update
     void Start()
     {
         startPosition = transform.position.x;
-        length = GetComponent<SpriteRenderer>().bounds.size.x;
+        _length = GetComponent<SpriteRenderer>().bounds.size.x;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float temp = (camera.transform.position.x * (1 - parallaxEffect));
-        float distance = (camera.transform.position.x * parallaxEffect);
+        float temp = (p_camera.transform.position.x * (1 - parallaxEffect));
+        float distance = (p_camera.transform.position.x * parallaxEffect);
         transform.position = new Vector3(startPosition + distance, transform.position.y, transform.position.z);
-        if (temp > startPosition + length) 
+        if (temp > startPosition + _length) 
         {
-            startPosition += length;
-        }else if (temp < startPosition - length)
+            startPosition += _length;
+        }else if (temp < startPosition - _length)
         {
-            startPosition -= length;
+            startPosition -= _length;
         }
     }
 }
