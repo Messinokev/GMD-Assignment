@@ -11,6 +11,7 @@ public class HealthBar : MonoBehaviour
 
     public Animator animator;
     private static readonly int takeDamamge = Animator.StringToHash("take_damage");
+    private static readonly int die = Animator.StringToHash("die");
 
     private bool dead;
 
@@ -47,6 +48,7 @@ public class HealthBar : MonoBehaviour
             //Die
             if (!dead)
             {
+                animator.SetBool(die, true);
                 dead = true;
             }
         }
