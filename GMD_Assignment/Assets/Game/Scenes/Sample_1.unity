@@ -2229,6 +2229,7 @@ MonoBehaviour:
   agroRange: 4
   walkSpeed: 75
   mustPatrol: 0
+  runSpeed: 200
   rb: {fileID: 783308876}
   groundCheckPosition: {fileID: 85100052}
   groundLayer:
