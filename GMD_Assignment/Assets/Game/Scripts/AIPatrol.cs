@@ -6,17 +6,16 @@ using UnityEngine;
 public class AIPatrol : MonoBehaviour
 {
     //agro
-    [SerializeField]
-    private Transform player;
+    [SerializeField] private Transform player;
 
     [SerializeField] private float agroRange;
 
     //patrol
     public float walkSpeed;
-    [HideInInspector]
-    public bool mustPatrol;
+    [HideInInspector] public bool mustPatrol;
 
     private bool mustFlip;
+    public float runSpeed;
 
     public Rigidbody2D rb;
 
@@ -38,7 +37,7 @@ public class AIPatrol : MonoBehaviour
     void Update()
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-        if (distanceToPlayer<agroRange)
+        if (distanceToPlayer < agroRange)
         {
             mustPatrol = false;
         }
@@ -46,23 +45,23 @@ public class AIPatrol : MonoBehaviour
         {
             mustPatrol = true;
         }
-
     }
 
     private void FixedUpdate()
     {
-        
+        mustFlip = !Physics2D.OverlapCircle(groundCheckPosition.position, 0.1f, groundLayer);
+
+
         if (mustPatrol)
         {
-            mustFlip = !Physics2D.OverlapCircle(groundCheckPosition.position, 0.1f, groundLayer);
             animator.SetBool(MustPatrol, true);
             Patrol();
         }
         else
         {
+            animator.SetBool(MustPatrol, false);
             ChasePlayer();
         }
-        
     }
 
     void Patrol()
@@ -71,6 +70,7 @@ public class AIPatrol : MonoBehaviour
         {
             Flip();
         }
+
         rb.velocity = new Vector2(walkSpeed * Time.fixedDeltaTime, rb.velocity.y);
     }
 
@@ -78,18 +78,28 @@ public class AIPatrol : MonoBehaviour
     {
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
         walkSpeed *= -1;
+        runSpeed *= -1;
         mustFlip = false;
     }
+
     private void ChasePlayer()
     {
-        if(player.position.x>transform.position.x && walkSpeed<0)
+        if (Physics2D.OverlapCircle(groundCheckPosition.position, 0.1f, groundLayer))
         {
-            Flip();
-        } 
-        if (player.position.x<transform.position.x && walkSpeed>0)
-        {
-            Flip();
+            if (player.position.x > transform.position.x && walkSpeed < 0)
+            {
+                Flip();
+            }
+            else if (player.position.x < transform.position.x && walkSpeed > 0)
+            {
+                Flip();
+            }
+
+            rb.velocity = new Vector2(runSpeed * Time.fixedDeltaTime, 0);
         }
-        rb.velocity = new Vector2(walkSpeed* Time.fixedDeltaTime, 0);
+        else
+        {
+            rb.velocity = new Vector2(0, 0);
+        }
     }
 }
