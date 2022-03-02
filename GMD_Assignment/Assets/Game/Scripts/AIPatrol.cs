@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class AIPatrol : MonoBehaviour
 {
+    //agro
+    [SerializeField]
+    private Transform player;
+
+    [SerializeField] private float agroRange;
+
+    //patrol
     public float walkSpeed;
     [HideInInspector]
     public bool mustPatrol;
@@ -24,17 +31,27 @@ public class AIPatrol : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mustPatrol = true;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        if (distanceToPlayer<agroRange)
+        {
+            mustPatrol = false;
+        }
+        else
+        {
+            mustPatrol = true;
+        }
+
     }
 
     private void FixedUpdate()
     {
+        
         if (mustPatrol)
         {
             mustFlip = !Physics2D.OverlapCircle(groundCheckPosition.position, 0.1f, groundLayer);
@@ -43,8 +60,9 @@ public class AIPatrol : MonoBehaviour
         }
         else
         {
-            animator.SetBool(MustPatrol, false);
+            ChasePlayer();
         }
+        
     }
 
     void Patrol()
@@ -58,10 +76,20 @@ public class AIPatrol : MonoBehaviour
 
     void Flip()
     {
-        mustPatrol = false;
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
         walkSpeed *= -1;
-        mustPatrol = true;
         mustFlip = false;
+    }
+    private void ChasePlayer()
+    {
+        if(player.position.x>transform.position.x && walkSpeed<0)
+        {
+            Flip();
+        } 
+        if (player.position.x<transform.position.x && walkSpeed>0)
+        {
+            Flip();
+        }
+        rb.velocity = new Vector2(walkSpeed* Time.fixedDeltaTime, 0);
     }
 }
