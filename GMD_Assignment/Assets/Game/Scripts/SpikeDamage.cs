@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class SpikeDamage : MonoBehaviour
 {
-    private int damage = 10;
+    private int damage = 25;
     public Rigidbody2D player;
     public HealthBar healthBar;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && !healthBar.dead)
         {
             healthBar.TakeDamage(damage);
 

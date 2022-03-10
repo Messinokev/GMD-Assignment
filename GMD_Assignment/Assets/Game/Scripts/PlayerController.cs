@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     private float speed = 8f;
 
-    private float jumpingPower = 11f;
+    private float jumpingPower = 12f;
 
     private bool isFacingRight = true;
     public static int coinCount;
