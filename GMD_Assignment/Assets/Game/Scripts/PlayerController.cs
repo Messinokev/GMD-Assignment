@@ -88,5 +88,4 @@ public class PlayerController : MonoBehaviour
         horizontal = context.ReadValue<Vector2>().x;
         animator.SetFloat(Speed, Mathf.Abs(horizontal));
     }
-
 }
