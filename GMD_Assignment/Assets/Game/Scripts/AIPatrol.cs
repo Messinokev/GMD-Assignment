@@ -6,7 +6,7 @@ using UnityEngine;
 public class AIPatrol : MonoBehaviour
 {
     //agro
-    [SerializeField] private Transform player;
+    [SerializeField] private Rigidbody2D player;
 
     [SerializeField] private float agroRange;
 
@@ -16,6 +16,7 @@ public class AIPatrol : MonoBehaviour
 
     private bool mustFlip;
     public float runSpeed;
+    public int damage;
 
     public Rigidbody2D rb;
 
@@ -24,6 +25,7 @@ public class AIPatrol : MonoBehaviour
     public LayerMask groundLayer;
     public Collider2D bodyCollider;
     public Animator animator;
+    public HealthBar healthBar;
 
     private static readonly int MustPatrol = Animator.StringToHash("MustPatrol");
 
@@ -61,6 +63,15 @@ public class AIPatrol : MonoBehaviour
         {
             animator.SetBool(MustPatrol, false);
             ChasePlayer();
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            healthBar.TakeDamage(damage);
+            player.AddForce(Vector2.up *13, ForceMode2D.Impulse);
+
         }
     }
 
