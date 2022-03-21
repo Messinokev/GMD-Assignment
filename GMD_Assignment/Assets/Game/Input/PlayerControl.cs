@@ -53,6 +53,15 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SceneLoad"",
+                    ""type"": ""Button"",
+                    ""id"": ""0f2a3a20-416a-4137-b841-3aa537e62e55"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -176,6 +185,17 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""24e0c65a-15f7-4b1b-9876-1b241b9ec5d1"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SceneLoad"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -187,6 +207,7 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
+        m_Player_SceneLoad = m_Player.FindAction("SceneLoad", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -249,6 +270,7 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Attack;
+    private readonly InputAction m_Player_SceneLoad;
     public struct PlayerActions
     {
         private @PlayerControl m_Wrapper;
@@ -256,6 +278,7 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
+        public InputAction @SceneLoad => m_Wrapper.m_Player_SceneLoad;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -274,6 +297,9 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
                 @Attack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
+                @SceneLoad.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSceneLoad;
+                @SceneLoad.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSceneLoad;
+                @SceneLoad.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSceneLoad;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -287,6 +313,9 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
+                @SceneLoad.started += instance.OnSceneLoad;
+                @SceneLoad.performed += instance.OnSceneLoad;
+                @SceneLoad.canceled += instance.OnSceneLoad;
             }
         }
     }
@@ -296,5 +325,6 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnSceneLoad(InputAction.CallbackContext context);
     }
 }

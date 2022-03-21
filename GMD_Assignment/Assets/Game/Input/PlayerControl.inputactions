@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SceneLoad",
+                    "type": "Button",
+                    "id": "0f2a3a20-416a-4137-b841-3aa537e62e55",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -154,6 +163,17 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "24e0c65a-15f7-4b1b-9876-1b241b9ec5d1",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SceneLoad",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
