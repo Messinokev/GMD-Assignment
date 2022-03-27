@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     public LayerMask groundLayer;
     public Animator animator;
-    public TextMeshProUGUI coinsText;
+    
 
     private float horizontal;
 
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     private float jumpingPower = 12f;
 
     private bool isFacingRight = true;
-    public static int coinCount;
+    
 
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int IsJumping = Animator.StringToHash("IsJumping");
@@ -31,14 +31,12 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        coinCount = 0;
-        SetCoinsText();
+        
     }
 
     void Update()
     {
-        //Set coin text
-        SetCoinsText();
+       
 
         //Flipping the player
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
@@ -65,10 +63,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void SetCoinsText()
-    {
-        coinsText.text = coinCount.ToString();
-    }
+    
 
     private bool IsGrounded()
     {
