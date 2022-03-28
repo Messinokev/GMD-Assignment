@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 822295484227325749}
   - component: {fileID: 822295484227325751}
   - component: {fileID: 822295484227325745}
-  - component: {fileID: 822295484227325750}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -107,7 +106,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   animator: {fileID: 822295484227325745}
-  coinsText: {fileID: 0}
+  speed: 8
+  jumpingPower: 12
 --- !u!114 &822295484227325738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,18 +244,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &822295484227325750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 822295484227325737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d28526503df2c448ab07f93e056b3ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &822295484327133052
 GameObject:
   m_ObjectHideFlags: 0

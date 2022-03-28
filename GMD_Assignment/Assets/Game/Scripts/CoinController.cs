@@ -7,12 +7,13 @@ using UnityEngine;
 
 public class CoinController : MonoBehaviour
 {
-    public static int coinCount;
-    public TextMeshProUGUI coinsText;
+    public static int coinCount = 0;
+    private TextMeshProUGUI coinsText;
 
     void Start()
     {
-        coinCount = 0;
+        coinsText = GameObject.Find("CoinText").GetComponent<TextMeshProUGUI>();
+
         SetCoinsText();
     }
 

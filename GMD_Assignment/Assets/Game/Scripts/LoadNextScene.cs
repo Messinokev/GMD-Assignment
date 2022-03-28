@@ -9,7 +9,6 @@ public class LoadNextScene : MonoBehaviour
     private bool atMine;
 
 
-
     private void Awake()
     {
         _playerControl = new PlayerControl();

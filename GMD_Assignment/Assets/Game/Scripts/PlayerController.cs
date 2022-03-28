@@ -18,9 +18,9 @@ public class PlayerController : MonoBehaviour
 
     private float horizontal;
 
-    private float speed = 8f;
+    [SerializeField] private float speed = 8f;
 
-    private float jumpingPower = 12f;
+    [SerializeField]  private float jumpingPower = 12f;
 
     private bool isFacingRight = true;
     

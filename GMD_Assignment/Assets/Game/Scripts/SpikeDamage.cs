@@ -6,7 +6,12 @@ public class SpikeDamage : MonoBehaviour
 {
     private int damage = 25;
     public Rigidbody2D player;
-    public HealthBar healthBar;
+    private HealthBar healthBar;
+
+    private void Start()
+    {
+        healthBar = GameObject.Find("Health bar").GetComponent<HealthBar>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
