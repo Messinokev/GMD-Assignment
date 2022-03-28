@@ -7,11 +7,6 @@ public class Respawn : MonoBehaviour
     private Vector3 respawnPoint;
     [SerializeField] private Transform player;
 
-    private void Start()
-    {
-        transform.position = player.transform.position;
-    }
-
     private void FixedUpdate()
     {
         if (player == null)
