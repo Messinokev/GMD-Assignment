@@ -10,7 +10,7 @@ public class HealthPotion : MonoBehaviour
 
     public HealthBar healthBar;
 
-    public static int potionCount;
+    public  int potionCount;
     public TextMeshProUGUI potionCountText;
 
     public PlayerControl _playerControl;
