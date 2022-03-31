@@ -5507,6 +5507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 171593523}
+  potionCount: 1
   potionCountText: {fileID: 83833843}
 --- !u!1 &1468591431
 GameObject:
