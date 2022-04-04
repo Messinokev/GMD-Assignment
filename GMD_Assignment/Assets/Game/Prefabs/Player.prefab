@@ -173,6 +173,18 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 0f2a3a20-416a-4137-b841-3aa537e62e55
     m_ActionName: Player/SceneLoad[/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5d0c1bf0-fd00-4b47-bd4b-742df183f4f9
+    m_ActionName: Player/UsePotion[/Keyboard/a]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6d3da269-e840-4397-ad7b-71d63e75343d
+    m_ActionName: Player/ContinueDialog[/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2bdb084b-21f8-48b2-b1bf-7ecb6373078e
+    m_ActionName: Player/Shoping[/Keyboard/upArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -208,7 +220,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 822295484227325737}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 02201ec9ac2c94546bd3f4870f122a3d, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
