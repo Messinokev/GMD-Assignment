@@ -77,4 +77,22 @@ public class HealthPotion : MonoBehaviour
     {
         potionCountText.text = potionCount.ToString();
     }
+
+    public bool HasSpaceForPotion()
+    {
+        if (potionCount < 5)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void BuyPotion()
+    {
+        potionCount++;
+        SetPotionCountText();
+    }
 }

@@ -52,13 +52,13 @@ public class DialogManager : MonoBehaviour
         StartCoroutine(TypeSentence(sentence));
     }
 
-    private IEnumerator TypeSentence(string sentence)
+    public IEnumerator TypeSentence(string sentence)
     {
         dialogText.text = "";
         foreach (var letter in sentence.ToCharArray())
         {
             dialogText.text += letter;
-            yield return new WaitForSecondsRealtime(0.015f);
+            yield return new WaitForSecondsRealtime(0.008f);
         }
     }
 

@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class CoinController : MonoBehaviour
 {
-    public static int coinCount = 0;
+    public static int coinCount = 19;
     private TextMeshProUGUI coinsText;
 
     void Start()
@@ -37,4 +37,23 @@ public class CoinController : MonoBehaviour
     {
         coinsText.text = coinCount.ToString();
     }
+
+    public bool HasEnoughCoins(int price)
+    {
+        if (coinCount >= price)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void SpendCoin(int price)
+    {
+        coinCount -= price;
+        SetCoinsText();
+    }
+
 }

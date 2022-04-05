@@ -8,11 +8,19 @@ public class DialogTrigger : MonoBehaviour
     public PlayerControl _playerControl;
     private bool continueButtonPressed = false;
     private bool onTrigger = false;
+    private bool canShop = false;
 
+    [SerializeField] private int potionPrice = 5;
+    private CoinController _coinController;
+    private HealthPotion _healthPotion;
+    private DialogManager _dialogManager;
 
     private void Awake()
     {
         _playerControl = new PlayerControl();
+        _coinController = FindObjectOfType<CoinController>();
+        _healthPotion = FindObjectOfType<HealthPotion>();
+        _dialogManager = FindObjectOfType<DialogManager>();
     }
 
     private void OnEnable()
@@ -27,7 +35,7 @@ public class DialogTrigger : MonoBehaviour
 
     public void TriggerDialog()
     {
-        FindObjectOfType<DialogManager>().StartDialog(dialog);
+        _dialogManager.StartDialog(dialog);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,6 +44,8 @@ public class DialogTrigger : MonoBehaviour
         {
             continueButtonPressed = false;
             onTrigger = true;
+            canShop = true;
+
             TriggerDialog();
         }
     }
@@ -45,6 +55,7 @@ public class DialogTrigger : MonoBehaviour
         if (collision.tag == "Player")
         {
             onTrigger = false;
+            canShop = true;
             FindObjectOfType<DialogManager>().EndDialog();
         }
     }
@@ -59,8 +70,30 @@ public class DialogTrigger : MonoBehaviour
 
         if (onTrigger && continueButtonPressed)
         {
-            FindObjectOfType<DialogManager>().DisplayNextSentence();
+            _dialogManager.DisplayNextSentence();
             continueButtonPressed = false;
+        }
+
+        if (canShop && _playerControl.Player.Shoping.triggered && FindObjectOfType<DialogManager>().dialogText.text.Contains("Press"))
+        {
+            if (_coinController.HasEnoughCoins(potionPrice))
+            {
+                if (_healthPotion.HasSpaceForPotion())
+                {
+                    _coinController.SpendCoin(potionPrice);
+                    _healthPotion.BuyPotion();
+                }
+                else
+                {
+                    StartCoroutine(_dialogManager.TypeSentence("You can't carry more then 5 potions, Anke!"));
+
+                }
+            }
+            else
+            {
+                StartCoroutine(_dialogManager.TypeSentence("You don't have enough coins, Anke!"));
+            }
+
         }
     }
 

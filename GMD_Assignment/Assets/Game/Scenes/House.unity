@@ -1246,8 +1246,10 @@ MonoBehaviour:
     name: Merchant Maverick
     sentences:
     - Hey Anke! Do you want to buy some Health Potion?
+    - One Health Potions costs 5 coins.
     - Press (Y / UpArrow) if you want to buy some Health Potion!
     - Thank you for shopping! Never lose hope!
+  potionPrice: 5
 --- !u!61 &379516333
 BoxCollider2D:
   m_ObjectHideFlags: 0
