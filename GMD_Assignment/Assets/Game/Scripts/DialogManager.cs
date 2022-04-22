@@ -5,26 +5,47 @@ using UnityEngine;
 
 public class DialogManager : MonoBehaviour
 {
-    public TextMeshProUGUI NPCnameText;
-    public TextMeshProUGUI dialogText;
-    public TextMeshProUGUI continueText;
+    public TextMeshProUGUI merchantNPCNameText;
+    public TextMeshProUGUI merchantDialogText;
+    public TextMeshProUGUI merchantContinueText;
 
-    public Animator animator;
+    public TextMeshProUGUI smithNPCNameText;
+    public TextMeshProUGUI smithDialogText;
+    public TextMeshProUGUI smithContinueText;
+
+    public Animator merchantAnimator;
+    public Animator smithAnimator;
 
     private Queue<string> sentences;
 
     void Start()
     {
         sentences = new Queue<string>();
-
     }
 
-    public void StartDialog(Dialog dialog)
+    public void StartDialogWithMerchant(Dialog dialog)
     {
-        animator.SetBool("IsOpen", true);
+        merchantAnimator.SetBool("IsOpen", true);
 
-        NPCnameText.text = dialog.name;
-        continueText.text = "Continue>>";
+        merchantNPCNameText.text = dialog.name;
+        merchantContinueText.text = "Continue>>";
+
+        sentences.Clear();
+
+        foreach (string sentence in dialog.sentences)
+        {
+            sentences.Enqueue(sentence);
+        }
+
+        DisplayNextSentence();
+    }
+
+    public void StartDialogWithSmith(Dialog dialog)
+    {
+        smithAnimator.SetBool("SmithIsOpen", true);
+
+        smithNPCNameText.text = dialog.name;
+        smithContinueText.text = "Continue>>";
 
         sentences.Clear();
 
@@ -44,7 +65,8 @@ public class DialogManager : MonoBehaviour
         }
         if (sentences.Count == 1)
         {
-            continueText.text = "";
+            merchantContinueText.text = "";
+            smithContinueText.text = "";
         }
 
         string sentence = sentences.Dequeue();
@@ -54,20 +76,30 @@ public class DialogManager : MonoBehaviour
 
     public IEnumerator TypeSentence(string sentence)
     {
-        dialogText.text = "";
+        merchantDialogText.text = "";
+        smithDialogText.text = "";
         foreach (var letter in sentence.ToCharArray())
         {
-            dialogText.text += letter;
+            merchantDialogText.text += letter;
+            smithDialogText.text += letter;
             yield return new WaitForSecondsRealtime(0.008f);
         }
     }
 
-    public void EndDialog()
+    public void EndDialogWithMerchant()
     {
-        animator.SetBool("IsOpen", false);
-        NPCnameText.text = "";
-        dialogText.text = "";
-        continueText.text = "";
+        merchantAnimator.SetBool("IsOpen", false);
+        merchantNPCNameText.text = "";
+        merchantDialogText.text = "";
+        merchantContinueText.text = "";
+    }
+
+    public void EndDialogWithSmith()
+    {
+        smithAnimator.SetBool("SmithIsOpen", false);
+        smithNPCNameText.text = "";
+        smithDialogText.text = "";
+        smithContinueText.text = "";
     }
 
 

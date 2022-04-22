@@ -33,30 +33,48 @@ public class DialogTrigger : MonoBehaviour
         _playerControl.Disable();
     }
 
-    public void TriggerDialog()
+    public void TriggerDialogWithMerchant()
     {
-        _dialogManager.StartDialog(dialog);
+        _dialogManager.StartDialogWithMerchant(dialog);
+    }
+
+    public void TriggerDialogWithSmith()
+    {
+        _dialogManager.StartDialogWithSmith(dialog);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && tag == "Merchant")
         {
             continueButtonPressed = false;
             onTrigger = true;
             canShop = true;
 
-            TriggerDialog();
+            TriggerDialogWithMerchant();
+        }
+        if (collision.tag == "Player" && tag == "Smith")
+        {
+            continueButtonPressed = false;
+            onTrigger = true;
+
+            TriggerDialogWithSmith();
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && tag == "Merchant")
         {
             onTrigger = false;
             canShop = true;
-            FindObjectOfType<DialogManager>().EndDialog();
+            FindObjectOfType<DialogManager>().EndDialogWithMerchant();
+        }
+        if (collision.tag == "Player" && tag == "Smith")
+        {
+            onTrigger = false;
+           
+            FindObjectOfType<DialogManager>().EndDialogWithSmith();
         }
     }
 
@@ -74,7 +92,7 @@ public class DialogTrigger : MonoBehaviour
             continueButtonPressed = false;
         }
 
-        if (canShop && _playerControl.Player.Shoping.triggered && FindObjectOfType<DialogManager>().dialogText.text.Contains("Press"))
+        if (canShop && _playerControl.Player.Shoping.triggered && FindObjectOfType<DialogManager>().merchantDialogText.text.Contains("Press"))
         {
             if (_coinController.HasEnoughCoins(potionPrice))
             {
