@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     public Slider slider;
-    public int maxHealth = 100;
+    public int maxHealth;
     public int currentHealth;
-    public TextMeshProUGUI HPtext;
+    private TextMeshProUGUI HPtext;
 
     public Animator animator;
     private static readonly int takeDamamge = Animator.StringToHash("take_damage");
@@ -20,17 +20,35 @@ public class HealthBar : MonoBehaviour
 
     Respawn respawn;
 
-    private void Awake()
-    {
-        currentHealth = maxHealth;
-        SetMaxHealth(maxHealth);
 
-        SetHPText();
+    private void Start()
+    {
+        HPtext = GameObject.Find("HPText").GetComponent<TextMeshProUGUI>();
+
+        SetMaxHealth(maxHealth);
+        SetHPText(currentHealth);
 
         respawn = FindObjectOfType<Respawn>();
     }
 
+    private void FixedUpdate()
+    {
+        if (animator == null)
+        {
+            animator = GameObject.Find("Player").GetComponent<Animator>();
+        }
+        if (respawn == null) {
+            respawn = GetComponent<Respawn>();
+        }
+        SetHPText(currentHealth);
+    }
+
     private void SetHPText()
+    {
+        HPtext.text = currentHealth.ToString();
+    }
+
+    private void SetHPText(int currentHealth)
     {
         HPtext.text = currentHealth.ToString();
     }
@@ -71,6 +89,19 @@ public class HealthBar : MonoBehaviour
         SetHPText();
     }
 
+    public void AddHealth(int healing)
+    {
+        currentHealth += healing;
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        SetHealth(currentHealth);
+        SetHPText();
+    }
+
     public void PlayerRevive()
     {
         animator.SetBool(idle, true);
@@ -78,7 +109,7 @@ public class HealthBar : MonoBehaviour
         respawn.SetPlayerToSpawn();
         dead = false;
 
-        currentHealth = (int) (maxHealth * 0.5);
+        currentHealth = (int)(maxHealth * 0.5);
         SetHealth(currentHealth);
         SetHPText();
     }
