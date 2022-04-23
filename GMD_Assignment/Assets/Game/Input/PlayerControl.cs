@@ -89,6 +89,15 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LoadSaving"",
+                    ""type"": ""Button"",
+                    ""id"": ""7a8e00e1-ec6a-4387-ae74-8a447fe956b0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -300,6 +309,17 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
                     ""action"": ""Shoping"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d4b6e09d-69d9-4065-8552-e767c7d3f51b"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadSaving"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -315,6 +335,7 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
         m_Player_UsePotion = m_Player.FindAction("UsePotion", throwIfNotFound: true);
         m_Player_ContinueDialog = m_Player.FindAction("ContinueDialog", throwIfNotFound: true);
         m_Player_Shoping = m_Player.FindAction("Shoping", throwIfNotFound: true);
+        m_Player_LoadSaving = m_Player.FindAction("LoadSaving", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -381,6 +402,7 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_UsePotion;
     private readonly InputAction m_Player_ContinueDialog;
     private readonly InputAction m_Player_Shoping;
+    private readonly InputAction m_Player_LoadSaving;
     public struct PlayerActions
     {
         private @PlayerControl m_Wrapper;
@@ -392,6 +414,7 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
         public InputAction @UsePotion => m_Wrapper.m_Player_UsePotion;
         public InputAction @ContinueDialog => m_Wrapper.m_Player_ContinueDialog;
         public InputAction @Shoping => m_Wrapper.m_Player_Shoping;
+        public InputAction @LoadSaving => m_Wrapper.m_Player_LoadSaving;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -422,6 +445,9 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
                 @Shoping.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoping;
                 @Shoping.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoping;
                 @Shoping.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoping;
+                @LoadSaving.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLoadSaving;
+                @LoadSaving.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLoadSaving;
+                @LoadSaving.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLoadSaving;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -447,6 +473,9 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
                 @Shoping.started += instance.OnShoping;
                 @Shoping.performed += instance.OnShoping;
                 @Shoping.canceled += instance.OnShoping;
+                @LoadSaving.started += instance.OnLoadSaving;
+                @LoadSaving.performed += instance.OnLoadSaving;
+                @LoadSaving.canceled += instance.OnLoadSaving;
             }
         }
     }
@@ -460,5 +489,6 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
         void OnUsePotion(InputAction.CallbackContext context);
         void OnContinueDialog(InputAction.CallbackContext context);
         void OnShoping(InputAction.CallbackContext context);
+        void OnLoadSaving(InputAction.CallbackContext context);
     }
 }

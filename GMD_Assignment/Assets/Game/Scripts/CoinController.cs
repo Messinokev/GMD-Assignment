@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class CoinController : MonoBehaviour
 {
-    public static int coinCount = 19;
+    public static int coinCount;
     private TextMeshProUGUI coinsText;
 
     void Start()
@@ -29,8 +29,14 @@ public class CoinController : MonoBehaviour
         if (collision.transform.CompareTag("Player"))
         {
             coinCount++;
+            FindObjectOfType<PlayerController>().coinCount = coinCount;
             Destroy(gameObject);
         }
+    }
+
+    public void LoadCoinCount()
+    {
+        coinCount = FindObjectOfType<PlayerController>().coinCount;
     }
 
     private void SetCoinsText()
