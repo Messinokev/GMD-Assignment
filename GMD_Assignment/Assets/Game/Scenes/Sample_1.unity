@@ -7123,6 +7123,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+
     m_TransformParent: {fileID: 1551689520}
     m_Modifications:
     - target: {fileID: 856617842192693266, guid: 5d198b0b7f93c6947b62e215ee1e92cd, type: 3}
@@ -7264,6 +7265,7 @@ PrefabInstance:
 --- !u!114 &2799172289625566068
 MonoBehaviour:
   m_ObjectHideFlags: 0
+
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -7273,3 +7275,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2e273d1b0cf1f64685a19e2e7762ffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+
