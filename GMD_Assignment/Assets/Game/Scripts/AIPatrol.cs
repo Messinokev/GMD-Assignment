@@ -17,7 +17,7 @@ public class AIPatrol : MonoBehaviour
     [SerializeField] private float attackRange;
     private float previousAttackTime;
     private int damage = 25;
-    public HealthBar healthBar;
+    private HealthBar healthBar;
     
 
     //patrol
@@ -42,6 +42,7 @@ public class AIPatrol : MonoBehaviour
         previousAttackTime = -9999f;
         coolDown = 3f;
         rb = GetComponent<Rigidbody2D>();
+        healthBar = GameObject.Find("Health bar").GetComponent<HealthBar>();
     }
 
     // Update is called once per frame
