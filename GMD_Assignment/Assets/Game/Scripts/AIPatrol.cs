@@ -6,16 +6,25 @@ using UnityEngine;
 public class AIPatrol : MonoBehaviour
 {
     //agro
-    [SerializeField] private Transform player;
+    [SerializeField] private Rigidbody2D player;
 
     [SerializeField] private float agroRange;
+    public float runSpeed;
+    
+
+    private bool mustAttack;
+    private float coolDown;
+    [SerializeField] private float attackRange;
+    private float previousAttackTime;
+    private int damage = 25;
+    public HealthBar healthBar;
+    
 
     //patrol
     public float walkSpeed;
     [HideInInspector] public bool mustPatrol;
 
     private bool mustFlip;
-    public float runSpeed;
 
     public Rigidbody2D rb;
 
@@ -26,10 +35,12 @@ public class AIPatrol : MonoBehaviour
     public Animator animator;
 
     private static readonly int MustPatrol = Animator.StringToHash("MustPatrol");
+    private static readonly int MustAttack = Animator.StringToHash("MustAttack");
 
-    // Start is called before the first frame update
     void Start()
     {
+        previousAttackTime = -9999f;
+        coolDown = 3f;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -39,10 +50,20 @@ public class AIPatrol : MonoBehaviour
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
         if (distanceToPlayer < agroRange)
         {
+            if (distanceToPlayer < attackRange)
+            {
+                mustAttack = true;
+            }
+            else
+            {
+                mustAttack = false;
+            }
             mustPatrol = false;
+
         }
         else
         {
+            mustAttack = false;
             mustPatrol = true;
         }
     }
@@ -55,12 +76,29 @@ public class AIPatrol : MonoBehaviour
         if (mustPatrol)
         {
             animator.SetBool(MustPatrol, true);
+            animator.SetBool(MustAttack, false);
             Patrol();
         }
         else
         {
             animator.SetBool(MustPatrol, false);
-            ChasePlayer();
+            if (mustAttack)
+            {
+                AttackPlayer();
+            }
+            else
+            {
+                animator.SetBool(MustAttack, false);
+                ChasePlayer();
+            }
+        }
+    }
+    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player" && !healthBar.dead)
+        {
+            healthBar.TakeDamage(damage);
         }
     }
 
@@ -101,5 +139,12 @@ public class AIPatrol : MonoBehaviour
         {
             rb.velocity = new Vector2(0, 0);
         }
+    }
+
+    private void AttackPlayer()
+    {
+        if (!(Time.time > (previousAttackTime + coolDown))) return;
+        animator.SetBool(MustAttack, true);
+        previousAttackTime = Time.time;
     }
 }
