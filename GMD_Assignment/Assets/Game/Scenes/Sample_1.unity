@@ -5640,7 +5640,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1468591432}
-  - component: {fileID: 1468591433}
   m_Layer: 0
   m_Name: Coins
   m_TagString: Untagged
@@ -5666,18 +5665,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1468591433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1468591431}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce705d95b7bde8b4997bf00587d1933a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1474163313 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1319730438709805561, guid: 55cd6255b6172e145acf056a22ff6907, type: 3}
@@ -6444,7 +6431,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1849273526}
   m_Layer: 5
-  m_Name: LeftUI
+  m_Name: HealthUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
