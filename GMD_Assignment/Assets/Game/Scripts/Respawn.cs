@@ -88,11 +88,8 @@ public class Respawn : MonoBehaviour
         FindObjectOfType<CoinController>().LoadCoinCount();
         potion.potionCount = data.potionCount;
         logs.pickedUp = data.pickedLogs;
-        if (!data.pickedLogs)
-        {
-            PlayerPrefs.SetInt("PickedLogs", 0);
-            logs.LogsLoadedBack();
-        }
+        logs.LogsLoadedBack();
+
 
         Vector3 playerPostion;
         playerPostion.x = data.playerPosition[0];
