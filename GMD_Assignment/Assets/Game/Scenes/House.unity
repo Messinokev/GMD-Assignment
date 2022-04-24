@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 114789337}
   - component: {fileID: 114789336}
   m_Layer: 5
-  m_Name: Continue
+  m_Name: MerchantContinue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -983,7 +983,7 @@ GameObject:
   - component: {fileID: 295709939}
   - component: {fileID: 295709938}
   m_Layer: 5
-  m_Name: Dialog
+  m_Name: MerchantDialog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1654,7 +1654,7 @@ GameObject:
   - component: {fileID: 573500297}
   - component: {fileID: 573500296}
   m_Layer: 5
-  m_Name: NPC Name
+  m_Name: MerchantName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2034,7 +2034,7 @@ GameObject:
   - component: {fileID: 819996717}
   - component: {fileID: 819996716}
   m_Layer: 5
-  m_Name: Continue
+  m_Name: SmithContinue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3266,7 +3266,7 @@ GameObject:
   - component: {fileID: 1678337725}
   - component: {fileID: 1678337724}
   m_Layer: 5
-  m_Name: Dialog
+  m_Name: SmithDialog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3744,7 +3744,7 @@ GameObject:
   - component: {fileID: 1893403480}
   - component: {fileID: 1893403479}
   m_Layer: 5
-  m_Name: NPCName
+  m_Name: SmithName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

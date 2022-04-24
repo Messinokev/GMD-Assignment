@@ -40,12 +40,6 @@ public class PickableLogsScript : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.CompareTag("Player"))
@@ -65,7 +59,7 @@ public class PickableLogsScript : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
-        else
+        else if(_questProgress > 0)
         {
             PlayerPrefs.SetInt("PickedLogs", 0);
             GameObject.Find("NoLogs").GetComponent<RectTransform>().sizeDelta = new Vector2(35, 27.5f);

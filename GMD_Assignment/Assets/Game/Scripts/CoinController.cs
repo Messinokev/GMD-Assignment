@@ -14,6 +14,8 @@ public class CoinController : MonoBehaviour
     {
         coinsText = GameObject.Find("CoinText").GetComponent<TextMeshProUGUI>();
 
+        LoadCoinCount();
+
         SetCoinsText();
     }
 
@@ -29,14 +31,15 @@ public class CoinController : MonoBehaviour
         if (collision.transform.CompareTag("Player"))
         {
             coinCount++;
-            FindObjectOfType<PlayerController>().coinCount = coinCount;
+            PlayerPrefs.SetInt("Coins", coinCount);
             Destroy(gameObject);
         }
     }
 
     public void LoadCoinCount()
     {
-        coinCount = FindObjectOfType<PlayerController>().coinCount;
+        //coinCount = FindObjectOfType<PlayerController>().coinCount;
+        coinCount = PlayerPrefs.GetInt("Coins");
     }
 
     private void SetCoinsText()
@@ -59,6 +62,7 @@ public class CoinController : MonoBehaviour
     public void SpendCoin(int price)
     {
         coinCount -= price;
+        PlayerPrefs.SetInt("Coins", coinCount);
         SetCoinsText();
     }
 

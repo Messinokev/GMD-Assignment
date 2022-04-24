@@ -5,7 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 public static class SaveSystem
 {
 
-    public static void SaveStats(HealthBar health, PlayerController coin, HealthPotion potion, Respawn respawn, PickableLogsScript logs)
+    public static void SaveStats(HealthBar health, int coin, HealthPotion potion, Respawn respawn, PickableLogsScript logs)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/stats.save";

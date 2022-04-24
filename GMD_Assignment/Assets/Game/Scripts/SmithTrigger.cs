@@ -76,7 +76,6 @@ public class SmithTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-
         if (collision.tag == "Player" && tag == "Smith")
         {
             onTrigger = false;
@@ -87,18 +86,20 @@ public class SmithTrigger : MonoBehaviour
 
     private void Update()
     {
+        //Dialog with the Smith
         if (_playerControl.Player.ContinueDialog.triggered)
         {
             continueButtonPressed = true;
         }
-
+        //Dialog with the Smith
         if (onTrigger && continueButtonPressed)
         {
             _dialogManager.DisplayNextSentence();
             continueButtonPressed = false;
         }
 
-        if (_playerControl.Player.Shoping.triggered && FindObjectOfType<DialogManager>().smithDialogText.text.Contains("Press"))
+        //Main Story Line
+        if (_playerControl.Player.Shoping.triggered && FindObjectOfType<DialogManager>().smithDialogText.text.Contains("(Y / UpArrow)"))
         {
             if (_questProgress == 0)
             {
@@ -114,7 +115,7 @@ public class SmithTrigger : MonoBehaviour
             _questProgress = PlayerPrefs.GetInt("Quest");
         }
 
-        //ignite the furnace
+        //Ignite the furnace
         if (_questProgress == 1 && PlayerPrefs.GetInt("PickedLogs") == 1)
         {
             PlayerPrefs.SetInt("Quest", _questProgress + 1);

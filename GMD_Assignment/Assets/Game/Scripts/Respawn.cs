@@ -71,7 +71,7 @@ public class Respawn : MonoBehaviour
     public void SaveData()
     {
         health = FindObjectOfType<HealthBar>();
-        coin = FindObjectOfType<PlayerController>();
+        int coin = PlayerPrefs.GetInt("Coins");
         potion = FindObjectOfType<HealthPotion>();
         logs = FindObjectOfType<PickableLogsScript>();
 
@@ -85,6 +85,7 @@ public class Respawn : MonoBehaviour
         health.currentHealth = data.health;
         health.SetHealth(data.health);
         coin.coinCount = data.coinCount;
+        PlayerPrefs.SetInt("Coins", data.coinCount);
         FindObjectOfType<CoinController>().LoadCoinCount();
         potion.potionCount = data.potionCount;
         logs.pickedUp = data.pickedLogs;
