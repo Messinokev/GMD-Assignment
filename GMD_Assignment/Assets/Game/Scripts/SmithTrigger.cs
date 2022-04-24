@@ -9,6 +9,8 @@ public class SmithTrigger : MonoBehaviour
     private bool continueButtonPressed = false;
     private bool onTrigger = false;
 
+    public bool logsPickedUp = false;
+
     private DialogManager _dialogManager;
 
     private void Awake()

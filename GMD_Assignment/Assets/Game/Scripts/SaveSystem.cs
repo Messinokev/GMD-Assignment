@@ -5,13 +5,13 @@ using System.Runtime.Serialization.Formatters.Binary;
 public static class SaveSystem
 {
 
-    public static void SaveStats(HealthBar health, PlayerController coin, HealthPotion potion, Respawn respawn)
+    public static void SaveStats(HealthBar health, PlayerController coin, HealthPotion potion, Respawn respawn, PickableLogsScript logs)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/stats.save";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        DataToSave data = new DataToSave(health, coin, potion, respawn);
+        DataToSave data = new DataToSave(health, coin, potion, respawn, logs);
 
         formatter.Serialize(stream, data);
         stream.Close();

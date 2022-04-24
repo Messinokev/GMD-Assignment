@@ -9,12 +9,21 @@ public class Respawn : MonoBehaviour
 
     public PlayerControl _playerControl;
 
+    private HealthBar health;
+    private PlayerController coin;
+    private HealthPotion potion;
+    private PickableLogsScript logs;
+
     private void Awake()
     {
         _playerControl = new PlayerControl();
+        health = FindObjectOfType<HealthBar>();
+        coin = FindObjectOfType<PlayerController>();
+        potion = FindObjectOfType<HealthPotion>();
+        logs = FindObjectOfType<PickableLogsScript>();
     }
 
-        private void FixedUpdate()
+    private void FixedUpdate()
     {
         if (player == null)
         {
@@ -61,22 +70,29 @@ public class Respawn : MonoBehaviour
 
     public void SaveData()
     {
-        HealthBar helth = FindObjectOfType<HealthBar>();
-        PlayerController coin = FindObjectOfType<PlayerController>();
-        HealthPotion potion = FindObjectOfType<HealthPotion>();
+        health = FindObjectOfType<HealthBar>();
+        coin = FindObjectOfType<PlayerController>();
+        potion = FindObjectOfType<HealthPotion>();
+        logs = FindObjectOfType<PickableLogsScript>();
 
-        SaveSystem.SaveStats(helth, coin, potion, this);
+        SaveSystem.SaveStats(health, coin, potion, this, logs);
     }
 
     public void LoadData()
     {
         DataToSave data = SaveSystem.LoadStats();
 
-        FindObjectOfType<HealthBar>().currentHealth = data.health;
-        FindObjectOfType<HealthBar>().SetHealth(data.health);
-        FindObjectOfType<PlayerController>().coinCount = data.coinCount;
+        health.currentHealth = data.health;
+        health.SetHealth(data.health);
+        coin.coinCount = data.coinCount;
         FindObjectOfType<CoinController>().LoadCoinCount();
-        FindObjectOfType<HealthPotion>().potionCount = data.potionCount;
+        potion.potionCount = data.potionCount;
+        logs.pickedUp = data.pickedLogs;
+        if (!data.pickedLogs)
+        {
+            PlayerPrefs.SetInt("PickedLogs", 0);
+            logs.LogsLoadedBack();
+        }
 
         Vector3 playerPostion;
         playerPostion.x = data.playerPosition[0];
