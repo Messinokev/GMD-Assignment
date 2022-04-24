@@ -84,7 +84,6 @@ public class Respawn : MonoBehaviour
 
         health.currentHealth = data.health;
         health.SetHealth(data.health);
-        coin.coinCount = data.coinCount;
         PlayerPrefs.SetInt("Coins", data.coinCount);
         FindObjectOfType<CoinController>().LoadCoinCount();
         potion.potionCount = data.potionCount;

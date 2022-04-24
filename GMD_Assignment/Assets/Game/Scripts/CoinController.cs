@@ -38,7 +38,6 @@ public class CoinController : MonoBehaviour
 
     public void LoadCoinCount()
     {
-        //coinCount = FindObjectOfType<PlayerController>().coinCount;
         coinCount = PlayerPrefs.GetInt("Coins");
     }
 
