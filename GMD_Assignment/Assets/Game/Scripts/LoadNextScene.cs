@@ -6,13 +6,13 @@ public class LoadNextScene : MonoBehaviour
     [SerializeField] private int nextSceneToLoad = 1;
 
     public PlayerControl _playerControl;
-    private bool atMine;
+    private bool atEntrance;
 
 
     private void Awake()
     {
         _playerControl = new PlayerControl();
-        atMine = false;
+        atEntrance = false;
     }
 
     private void OnEnable()
@@ -29,7 +29,7 @@ public class LoadNextScene : MonoBehaviour
     {
         bool upArrowPressed = _playerControl.Player.SceneLoad.triggered;
 
-        if (atMine && upArrowPressed)
+        if (atEntrance && upArrowPressed)
         {
             SceneManager.LoadScene(nextSceneToLoad);
         }
@@ -39,7 +39,7 @@ public class LoadNextScene : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            atMine = true;
+            atEntrance = true;
         }
     }
 
@@ -47,7 +47,7 @@ public class LoadNextScene : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            atMine = false;
+            atEntrance = false;
         }
     }
 }

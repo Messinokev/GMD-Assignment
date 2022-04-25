@@ -5,13 +5,13 @@ using System.Runtime.Serialization.Formatters.Binary;
 public static class SaveSystem
 {
 
-    public static void SaveStats(HealthBar health, int coin, HealthPotion potion, Respawn respawn, PickableLogsScript logs)
+    public static void SaveStats(HealthBar health, int coin, HealthPotion potion, Respawn respawn, PickableLogsScript logs,  float[] camera)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/stats.save";
+        string path = Application.persistentDataPath + "/saveeDat.save";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        DataToSave data = new DataToSave(health, coin, potion, respawn, logs);
+        DataToSave data = new DataToSave(health, coin, potion, respawn, logs, camera);
 
         formatter.Serialize(stream, data);
         stream.Close();
@@ -19,7 +19,7 @@ public static class SaveSystem
 
     public static DataToSave LoadStats()
     {
-        string path = Application.persistentDataPath + "/stats.save";
+        string path = Application.persistentDataPath + "/saveeDat.save";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();

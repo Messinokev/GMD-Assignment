@@ -13,14 +13,21 @@ public class Respawn : MonoBehaviour
     private PlayerController coin;
     private HealthPotion potion;
     private PickableLogsScript logs;
+    private CameraController cameraPosition;
+
+    private void Start()
+    {
+        LoadData();
+    }
 
     private void Awake()
     {
         _playerControl = new PlayerControl();
         health = FindObjectOfType<HealthBar>();
-        coin = FindObjectOfType<PlayerController>();
+        //coin = FindObjectOfType<PlayerController>();
         potion = FindObjectOfType<HealthPotion>();
         logs = FindObjectOfType<PickableLogsScript>();
+        cameraPosition = FindObjectOfType<CameraController>();
     }
 
     private void FixedUpdate()
@@ -70,12 +77,15 @@ public class Respawn : MonoBehaviour
 
     public void SaveData()
     {
-        health = FindObjectOfType<HealthBar>();
         int coin = PlayerPrefs.GetInt("Coins");
-        potion = FindObjectOfType<HealthPotion>();
-        logs = FindObjectOfType<PickableLogsScript>();
+        Vector3 camPos = GameObject.Find("Main Camera").transform.position;
+        float[] camPosition = new float[3];
+        camPosition[0] = camPos.x;
+        camPosition[1] = camPos.y;
+        camPosition[2] = camPos.z;
 
-        SaveSystem.SaveStats(health, coin, potion, this, logs);
+
+        SaveSystem.SaveStats(health, coin, potion, this, logs, camPosition);
     }
 
     public void LoadData()
@@ -90,11 +100,16 @@ public class Respawn : MonoBehaviour
         logs.pickedUp = data.pickedLogs;
         logs.LogsLoadedBack();
 
-
         Vector3 playerPostion;
         playerPostion.x = data.playerPosition[0];
         playerPostion.y = data.playerPosition[1];
         playerPostion.z = data.playerPosition[2];
         GameObject.Find("Player").transform.position = playerPostion;
+
+        Vector3 cameraPostion;
+        cameraPostion.x = data.cameraPosition[0];
+        cameraPostion.y = data.cameraPosition[1];
+        cameraPostion.z = data.cameraPosition[2];
+        GameObject.Find("Main Camera").transform.position = cameraPostion;
     }
 }
