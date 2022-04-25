@@ -9,12 +9,14 @@ public class DataToSave
     public int coinCount;
     public int potionCount;
     public float[] playerPosition;
+    public bool pickedLogs;
 
-    public DataToSave(HealthBar health, PlayerController coin, HealthPotion potion, Respawn respawn)
+    public DataToSave(HealthBar health, int coin, HealthPotion potion, Respawn respawn, PickableLogsScript logs)
     {
         this.health = health.currentHealth;
-        coinCount = coin.coinCount;
+        coinCount = coin;
         potionCount = potion.potionCount;
+        pickedLogs = logs.pickedUp;
 
         playerPosition = new float[3];
         playerPosition[0] = respawn.transform.position.x;
