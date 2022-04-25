@@ -94,9 +94,15 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
                     ""name"": ""LoadSaving"",
                     ""type"": ""Button"",
                     ""id"": ""7a8e00e1-ec6a-4387-ae74-8a447fe956b0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""SwitchWeapon"",
                     ""type"": ""Button"",
-                    ""id"": ""a946854b-eead-4c70-92e0-55cfe5979ee8"",
+                    ""id"": ""b68bcd86-967b-4757-a953-13ef48820907"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -332,7 +338,12 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""LoadSaving"",
-                    ""id"": ""d063bc3b-4d6b-466a-8d15-02344e0aa9cb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""03045897-8051-45bc-a9d5-bb591a32ddfb"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
