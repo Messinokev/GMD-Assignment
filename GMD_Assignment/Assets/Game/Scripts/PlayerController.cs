@@ -32,8 +32,9 @@ public class PlayerController : MonoBehaviour
     private static readonly int IsJumping = Animator.StringToHash("IsJumping");
     private static readonly int IsAttacking = Animator.StringToHash("IsAttacking");
 
-    private void Start()
+    private void Awake()
     {
+        
     }
 
     void Update()

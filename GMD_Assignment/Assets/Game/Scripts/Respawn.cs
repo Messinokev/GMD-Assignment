@@ -16,6 +16,13 @@ public class Respawn : MonoBehaviour
     private void Start()
     {
         LoadData();
+
+        if (PlayerPrefs.GetInt("AtMine") == 1)
+        {
+            GameObject.Find("Player").transform.position = new Vector3(19.5f, -4.5f, 0f);
+            GameObject.Find("Main Camera").transform.position = new Vector3(19.3f, -1.5f, -10f);
+            PlayerPrefs.SetInt("AtMine", 0);
+        }
     }
 
     private void Awake()

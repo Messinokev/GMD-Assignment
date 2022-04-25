@@ -31,6 +31,10 @@ public class LoadNextScene : MonoBehaviour
 
         if (atEntrance && upArrowPressed)
         {
+            if (nextSceneToLoad == 1)
+            {
+                PlayerPrefs.SetInt("AtMine", 1);
+            }
             SceneManager.LoadScene(nextSceneToLoad);
         }
     }
