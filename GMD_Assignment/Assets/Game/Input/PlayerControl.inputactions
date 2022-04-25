@@ -72,6 +72,9 @@
                     "name": "LoadSaving",
                     "type": "Button",
                     "id": "7a8e00e1-ec6a-4387-ae74-8a447fe956b0",
+                    "name": "SwitchWeapon",
+                    "type": "Button",
+                    "id": "a946854b-eead-4c70-92e0-55cfe5979ee8",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -104,7 +107,18 @@
                 {
                     "name": "",
                     "id": "976d9ca2-18d9-4353-b794-ce4e48cd8409",
-                    "path": "",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5dd8c226-c652-43fe-ba81-db49cee628f4",
+                    "path": "<Mouse>/press",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -296,6 +310,12 @@
                     "processors": "",
                     "groups": "",
                     "action": "LoadSaving",
+                    "id": "d063bc3b-4d6b-466a-8d15-02344e0aa9cb",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

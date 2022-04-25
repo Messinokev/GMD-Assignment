@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using System.Threading;
+using Newtonsoft.Json.Bson;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,8 +25,13 @@ public class PlayerController : MonoBehaviour
     private bool isFacingRight = true;
     
 
+    public RuntimeAnimatorController unarmedController;
+    public RuntimeAnimatorController swordController;
+    private bool isAttackAnimation = false;
+
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int IsJumping = Animator.StringToHash("IsJumping");
+    private static readonly int IsAttacking = Animator.StringToHash("IsAttacking");
 
 
     private void Start()
@@ -81,5 +87,23 @@ public class PlayerController : MonoBehaviour
     {
         horizontal = context.ReadValue<Vector2>().x;
         animator.SetFloat(Speed, Mathf.Abs(horizontal));
+    }
+
+    public void Attack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            animator.SetBool(IsAttacking, true);
+        }
+        else
+        {
+            animator.SetBool(IsAttacking, false);
+        }
+    }
+
+    public void ChangeAnimation(InputAction.CallbackContext context)
+    {
+        isAttackAnimation = !isAttackAnimation;
+        animator.runtimeAnimatorController = isAttackAnimation ? swordController : unarmedController;
     }
 }
