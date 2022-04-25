@@ -20,6 +20,9 @@ public class SmithTrigger : MonoBehaviour
 
     private DialogManager _dialogManager;
 
+    private SpriteRenderer furnaceOffSpriteRenderer;
+    private RectTransform emptyFrameRectTrans;
+
     private void Awake()
     {
         _playerControl = new PlayerControl();
@@ -27,13 +30,16 @@ public class SmithTrigger : MonoBehaviour
 
         _questProgress = PlayerPrefs.GetInt("Quest");
 
+        furnaceOffSpriteRenderer = GameObject.Find("furnaceOff").GetComponent<SpriteRenderer>();
+        emptyFrameRectTrans = GameObject.Find("EmptyFrame").GetComponent<RectTransform>();
+
         if (_questProgress > 2)
         {
-            GameObject.Find("furnaceOff").GetComponent<SpriteRenderer>().enabled = false;
+            furnaceOffSpriteRenderer.enabled = false;
         }
         else
         {
-            GameObject.Find("furnaceOff").GetComponent<SpriteRenderer>().enabled = true;
+            furnaceOffSpriteRenderer.enabled = true;
         }
     }
 
@@ -103,13 +109,13 @@ public class SmithTrigger : MonoBehaviour
         {
             if (_questProgress == 0)
             {
-                GameObject.Find("EmptyFrame").GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
+                emptyFrameRectTrans.sizeDelta = new Vector2(0, 0);
             }
 
             if (_questProgress == 2)
             {
-                GameObject.Find("furnaceOff").GetComponent<SpriteRenderer>().enabled = false;
-                GameObject.Find("EmptyFrame").GetComponent<RectTransform>().sizeDelta = new Vector2(65, 65);
+                furnaceOffSpriteRenderer.enabled = false;
+                emptyFrameRectTrans.sizeDelta = new Vector2(65, 65);
             }
             PlayerPrefs.SetInt("Quest", _questProgress + 1);
             _questProgress = PlayerPrefs.GetInt("Quest");

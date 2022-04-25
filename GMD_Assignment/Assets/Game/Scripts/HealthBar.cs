@@ -25,7 +25,6 @@ public class HealthBar : MonoBehaviour
     {
         HPtext = GameObject.Find("HPText").GetComponent<TextMeshProUGUI>();
 
-        //SetMaxHealth(maxHealth);
         SetHPText(currentHealth);
 
         respawn = FindObjectOfType<Respawn>();
@@ -52,12 +51,6 @@ public class HealthBar : MonoBehaviour
     {
         HPtext.text = currentHealth.ToString();
     }
-
-    /*public void SetMaxHealth(int health)
-    {
-        slider.maxValue = health;
-        slider.value = health;
-    }*/
 
     public void SetHealth(int health)
     {

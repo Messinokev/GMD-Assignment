@@ -10,10 +10,8 @@ public class Respawn : MonoBehaviour
     public PlayerControl _playerControl;
 
     private HealthBar health;
-    private PlayerController coin;
     private HealthPotion potion;
     private PickableLogsScript logs;
-    private CameraController cameraPosition;
 
     private void Start()
     {
@@ -24,10 +22,8 @@ public class Respawn : MonoBehaviour
     {
         _playerControl = new PlayerControl();
         health = FindObjectOfType<HealthBar>();
-        //coin = FindObjectOfType<PlayerController>();
         potion = FindObjectOfType<HealthPotion>();
         logs = FindObjectOfType<PickableLogsScript>();
-        cameraPosition = FindObjectOfType<CameraController>();
     }
 
     private void FixedUpdate()
@@ -83,7 +79,6 @@ public class Respawn : MonoBehaviour
         camPosition[0] = camPos.x;
         camPosition[1] = camPos.y;
         camPosition[2] = camPos.z;
-
 
         SaveSystem.SaveStats(health, coin, potion, this, logs, camPosition);
     }
