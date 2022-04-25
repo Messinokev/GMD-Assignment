@@ -94,6 +94,9 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
                     ""name"": ""LoadSaving"",
                     ""type"": ""Button"",
                     ""id"": ""7a8e00e1-ec6a-4387-ae74-8a447fe956b0"",
+                    ""name"": ""SwitchWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""a946854b-eead-4c70-92e0-55cfe5979ee8"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -126,7 +129,18 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""976d9ca2-18d9-4353-b794-ce4e48cd8409"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5dd8c226-c652-43fe-ba81-db49cee628f4"",
+                    ""path"": ""<Mouse>/press"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -318,6 +332,12 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""LoadSaving"",
+                    ""id"": ""d063bc3b-4d6b-466a-8d15-02344e0aa9cb"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -336,6 +356,7 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
         m_Player_ContinueDialog = m_Player.FindAction("ContinueDialog", throwIfNotFound: true);
         m_Player_Shoping = m_Player.FindAction("Shoping", throwIfNotFound: true);
         m_Player_LoadSaving = m_Player.FindAction("LoadSaving", throwIfNotFound: true);
+        m_Player_SwitchWeapon = m_Player.FindAction("SwitchWeapon", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -403,6 +424,7 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ContinueDialog;
     private readonly InputAction m_Player_Shoping;
     private readonly InputAction m_Player_LoadSaving;
+    private readonly InputAction m_Player_SwitchWeapon;
     public struct PlayerActions
     {
         private @PlayerControl m_Wrapper;
@@ -415,6 +437,7 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
         public InputAction @ContinueDialog => m_Wrapper.m_Player_ContinueDialog;
         public InputAction @Shoping => m_Wrapper.m_Player_Shoping;
         public InputAction @LoadSaving => m_Wrapper.m_Player_LoadSaving;
+        public InputAction @SwitchWeapon => m_Wrapper.m_Player_SwitchWeapon;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -448,6 +471,9 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
                 @LoadSaving.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLoadSaving;
                 @LoadSaving.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLoadSaving;
                 @LoadSaving.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLoadSaving;
+                @SwitchWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeapon;
+                @SwitchWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeapon;
+                @SwitchWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeapon;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -476,6 +502,9 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
                 @LoadSaving.started += instance.OnLoadSaving;
                 @LoadSaving.performed += instance.OnLoadSaving;
                 @LoadSaving.canceled += instance.OnLoadSaving;
+                @SwitchWeapon.started += instance.OnSwitchWeapon;
+                @SwitchWeapon.performed += instance.OnSwitchWeapon;
+                @SwitchWeapon.canceled += instance.OnSwitchWeapon;
             }
         }
     }
@@ -490,5 +519,6 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
         void OnContinueDialog(InputAction.CallbackContext context);
         void OnShoping(InputAction.CallbackContext context);
         void OnLoadSaving(InputAction.CallbackContext context);
+        void OnSwitchWeapon(InputAction.CallbackContext context);
     }
 }
