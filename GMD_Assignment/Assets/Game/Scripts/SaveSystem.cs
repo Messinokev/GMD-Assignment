@@ -8,7 +8,7 @@ public static class SaveSystem
     public static void SaveStats(HealthBar health, int coin, HealthPotion potion, Respawn respawn, PickableLogsScript logs,  float[] camera)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/saveeDat.save";
+        string path = Application.persistentDataPath + "/saveData.save";
         FileStream stream = new FileStream(path, FileMode.Create);
 
         DataToSave data = new DataToSave(health, coin, potion, respawn, logs, camera);
@@ -19,7 +19,7 @@ public static class SaveSystem
 
     public static DataToSave LoadStats()
     {
-        string path = Application.persistentDataPath + "/saveeDat.save";
+        string path = Application.persistentDataPath + "/saveData.save";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();

@@ -121,7 +121,7 @@ public class SmithTrigger : MonoBehaviour
             _questProgress = PlayerPrefs.GetInt("Quest");
         }
 
-        //Ignite the furnace
+        //Smith sees that you picked up the logs
         if (_questProgress == 1 && PlayerPrefs.GetInt("PickedLogs") == 1)
         {
             PlayerPrefs.SetInt("Quest", _questProgress + 1);
