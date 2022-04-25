@@ -16,8 +16,6 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
     public Animator animator;
 
-    public int coinCount;
-
     private float horizontal;
 
     [SerializeField] private float speed = 8f;

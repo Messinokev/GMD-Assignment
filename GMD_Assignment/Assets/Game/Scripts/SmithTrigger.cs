@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class SmithTrigger : MonoBehaviour
 {
-    public Dialog dialog;
+    public Dialog firstQuest;
+    public Dialog duringQuests;
+    public Dialog firstQuestDone;
+    public Dialog secondQuest;
+    public Dialog secondQuestDone;
+
+    private int _questProgress;
+
     public PlayerControl _playerControl;
     private bool continueButtonPressed = false;
     private bool onTrigger = false;
+
+    public bool logsPickedUp = false;
 
     private DialogManager _dialogManager;
 
@@ -15,6 +24,17 @@ public class SmithTrigger : MonoBehaviour
     {
         _playerControl = new PlayerControl();
         _dialogManager = FindObjectOfType<DialogManager>();
+
+        _questProgress = PlayerPrefs.GetInt("Quest");
+
+        if (_questProgress > 2)
+        {
+            GameObject.Find("furnaceOff").GetComponent<SpriteRenderer>().enabled = false;
+        }
+        else
+        {
+            GameObject.Find("furnaceOff").GetComponent<SpriteRenderer>().enabled = true;
+        }
     }
 
     private void OnEnable()
@@ -29,7 +49,18 @@ public class SmithTrigger : MonoBehaviour
 
     public void TriggerDialogWithSmith()
     {
-        _dialogManager.StartDialogWithSmith(dialog);
+        if (_questProgress == 0)
+        {
+            _dialogManager.StartDialogWithSmith(firstQuest);
+        }
+        if (_questProgress == 1)
+        {
+            _dialogManager.StartDialogWithSmith(duringQuests);
+        }
+        if (_questProgress == 2)
+        {
+            _dialogManager.StartDialogWithSmith(firstQuestDone);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -45,7 +76,6 @@ public class SmithTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        
         if (collision.tag == "Player" && tag == "Smith")
         {
             onTrigger = false;
@@ -56,15 +86,40 @@ public class SmithTrigger : MonoBehaviour
 
     private void Update()
     {
+        //Dialog with the Smith
         if (_playerControl.Player.ContinueDialog.triggered)
         {
             continueButtonPressed = true;
         }
-
+        //Dialog with the Smith
         if (onTrigger && continueButtonPressed)
         {
             _dialogManager.DisplayNextSentence();
             continueButtonPressed = false;
+        }
+
+        //Main Story Line
+        if (_playerControl.Player.Shoping.triggered && FindObjectOfType<DialogManager>().smithDialogText.text.Contains("(Y / UpArrow)"))
+        {
+            if (_questProgress == 0)
+            {
+                GameObject.Find("EmptyFrame").GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
+            }
+
+            if (_questProgress == 2)
+            {
+                GameObject.Find("furnaceOff").GetComponent<SpriteRenderer>().enabled = false;
+                GameObject.Find("EmptyFrame").GetComponent<RectTransform>().sizeDelta = new Vector2(65, 65);
+            }
+            PlayerPrefs.SetInt("Quest", _questProgress + 1);
+            _questProgress = PlayerPrefs.GetInt("Quest");
+        }
+
+        //Ignite the furnace
+        if (_questProgress == 1 && PlayerPrefs.GetInt("PickedLogs") == 1)
+        {
+            PlayerPrefs.SetInt("Quest", _questProgress + 1);
+            _questProgress = PlayerPrefs.GetInt("Quest");
         }
     }
 }
