@@ -86,7 +86,7 @@ public class SmithTrigger : MonoBehaviour
         {
             onTrigger = false;
 
-            FindObjectOfType<DialogManager>().EndDialogWithSmith();
+            _dialogManager.EndDialogWithSmith();
         }
     }
 
@@ -105,7 +105,7 @@ public class SmithTrigger : MonoBehaviour
         }
 
         //Main Story Line
-        if (_playerControl.Player.Shoping.triggered && FindObjectOfType<DialogManager>().smithDialogText.text.Contains("(UpArrow)"))
+        if (_playerControl.Player.Shoping.triggered && _dialogManager.smithDialogText.text.Contains("(UpArrow)"))
         {
             if (_questProgress == 0)
             {
