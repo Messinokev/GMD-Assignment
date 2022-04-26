@@ -109,13 +109,13 @@ public class SmithTrigger : MonoBehaviour
         {
             if (_questProgress == 0)
             {
-                emptyFrameRectTrans.sizeDelta = new Vector2(0, 0);
+                emptyFrameRectTrans.sizeDelta = new Vector2(0f, 0f);
             }
 
             if (_questProgress == 2)
             {
                 furnaceOffSpriteRenderer.enabled = false;
-                emptyFrameRectTrans.sizeDelta = new Vector2(65, 65);
+                emptyFrameRectTrans.sizeDelta = new Vector2(125f, 125f);
             }
             PlayerPrefs.SetInt("Quest", _questProgress + 1);
             _questProgress = PlayerPrefs.GetInt("Quest");

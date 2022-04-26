@@ -26,16 +26,16 @@ public class DontDestroy : MonoBehaviour
 
         if (_questProgress == 0)
         {
-            GameObject.Find("EmptyFrame").GetComponent<RectTransform>().sizeDelta = new Vector2(65,65);
+            GameObject.Find("EmptyFrame").GetComponent<RectTransform>().sizeDelta = new Vector2(125f,125f);
         }
         else
         {
-            GameObject.Find("EmptyFrame").GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
+            GameObject.Find("EmptyFrame").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
         }
 
         if (_questProgress > 2)
         {
-            GameObject.Find("EmptyFrame").GetComponent<RectTransform>().sizeDelta = new Vector2(65, 65);
+            GameObject.Find("EmptyFrame").GetComponent<RectTransform>().sizeDelta = new Vector2(125f, 125f);
         }
         else
         {
