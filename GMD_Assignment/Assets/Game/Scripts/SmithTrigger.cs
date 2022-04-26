@@ -105,7 +105,7 @@ public class SmithTrigger : MonoBehaviour
         }
 
         //Main Story Line
-        if (_playerControl.Player.Shoping.triggered && FindObjectOfType<DialogManager>().smithDialogText.text.Contains("(Y / UpArrow)"))
+        if (_playerControl.Player.Shoping.triggered && FindObjectOfType<DialogManager>().smithDialogText.text.Contains("(UpArrow)"))
         {
             if (_questProgress == 0)
             {

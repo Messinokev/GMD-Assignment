@@ -74,7 +74,7 @@ public class MerchantTrigger : MonoBehaviour
             continueButtonPressed = false;
         }
 
-        if (canShop && _playerControl.Player.Shoping.triggered && FindObjectOfType<DialogManager>().merchantDialogText.text.Contains("Press"))
+        if (canShop && _playerControl.Player.Shoping.triggered && FindObjectOfType<DialogManager>().merchantDialogText.text.Contains("(Up Arrow)"))
         {
             if (_coinController.HasEnoughCoins(potionPrice))
             {

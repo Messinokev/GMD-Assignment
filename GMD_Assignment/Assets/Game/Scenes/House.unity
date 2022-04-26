@@ -1252,7 +1252,7 @@ MonoBehaviour:
     name: Merchant Mevrick
     sentences:
     - 'Hey Anke! Do you need some Health Potion? It costs: 5 coins'
-    - Press (UpArrow / Y) if you want to buy some Health Potion!
+    - Press (Up Arrow) if you want to buy some Health Potion!
     - Thanks for shopping, Anke! Neverf lose hope!
   potionPrice: 5
 --- !u!61 &379516333
@@ -1595,7 +1595,7 @@ MonoBehaviour:
     - Unfortunately, I am out of logs to ignite my furnace...
     - You could help me out collecting some logs from the woods...
     - I will reward and make you a special sword...
-    - 'To begin the Quest:             Press (Y / UpArrow)'
+    - 'To begin the Quest:             Press (UpArrow)'
   duringQuests:
     name: Smith Samuel
     sentences:
@@ -1608,7 +1608,7 @@ MonoBehaviour:
     - Promise me you will use it responsibly, Anke!...
     - 'Give the logs and pick up the sword:
 
-      Press (Y / UpArrow)'
+      Press (UpArrow)'
   secondQuest:
     name: Smith Samuel
     sentences: []
