@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnterToForest : MonoBehaviour
+public class MineSignTrigger : MonoBehaviour
 {
     public Dialog dialog;
     private SignDialogManager _dialogManager;
@@ -11,16 +11,16 @@ public class EnterToForest : MonoBehaviour
     {
         _dialogManager = FindObjectOfType<SignDialogManager>();
 
-        if (PlayerPrefs.GetInt("Quest") > 0)
+        if (PlayerPrefs.GetInt("Quest") > 3)
         {
-            GameObject.Find("ForestSign").GetComponent<BoxCollider2D>().enabled = false;
+            GameObject.Find("mineSign").GetComponent<BoxCollider2D>().enabled = false;
             this.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && tag == "ForestSign")
+        if (collision.tag == "Player" && tag == "MineSign")
         {
             _dialogManager.StartDialogWithSign(dialog);
         }
@@ -28,7 +28,7 @@ public class EnterToForest : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && tag == "ForestSign")
+        if (collision.tag == "Player" && tag == "MineSign")
         {
             _dialogManager.EndDialogWithSign();
         }
