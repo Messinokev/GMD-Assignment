@@ -71,7 +71,7 @@ public class Respawn : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Checkpoint")
+        if (collision.tag == "Checkpoint1" || collision.tag == "Checkpoint2" || collision.tag == "Checkpoint3" || collision.tag == "Checkpoint4")
         {
             respawnPoint = transform.position;
             SaveData();
