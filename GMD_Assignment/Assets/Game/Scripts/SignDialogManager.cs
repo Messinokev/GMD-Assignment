@@ -15,6 +15,12 @@ public class SignDialogManager : MonoBehaviour
         sentences = new Queue<string>();
     }
 
+    private void Awake()
+    {
+        forestSignDialog = GameObject.Find("ForestSignText").GetComponent<TextMeshProUGUI>();
+        forestSignAnimator = GameObject.Find("ForestSignDialogBox").GetComponent<Animator>();
+    }
+
     public void StartDialogWithSign(Dialog dialog)
     {
         forestSignAnimator.SetBool("SignIsOpen", true);
