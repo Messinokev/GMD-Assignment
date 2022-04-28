@@ -149,6 +149,10 @@ public class SmithTrigger : MonoBehaviour
                 haslogsRectTrans.sizeDelta = noSeeVector;
                 nologsRectTrans.sizeDelta = noSeeVector;
             }
+            if (_questProgress == 5)
+            {
+                emptyFrameRectTrans.sizeDelta = new Vector2(125f, 125f);
+            }
             PlayerPrefs.SetInt("Quest", _questProgress + 1);
             _questProgress = PlayerPrefs.GetInt("Quest");
             _dialogManager.EndDialogWithSmith();
@@ -156,6 +160,12 @@ public class SmithTrigger : MonoBehaviour
 
         //Smith sees that you picked up the logs
         if (_questProgress == 1 && PlayerPrefs.GetInt("PickedLogs") == 1)
+        {
+            PlayerPrefs.SetInt("Quest", _questProgress + 1);
+            _questProgress = PlayerPrefs.GetInt("Quest");
+        }
+        //Smith sees that you picked up the egg
+        if (_questProgress == 4 && PlayerPrefs.GetInt("PickedEgg") == 1)
         {
             PlayerPrefs.SetInt("Quest", _questProgress + 1);
             _questProgress = PlayerPrefs.GetInt("Quest");
