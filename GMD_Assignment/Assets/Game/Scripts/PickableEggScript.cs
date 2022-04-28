@@ -45,6 +45,7 @@ public class PickableEggScript : MonoBehaviour
         if (collision.transform.CompareTag("Player"))
         {
             GameObject.Find("NoEgg").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
+            GameObject.Find("HasEgg").GetComponent<RectTransform>().sizeDelta = new Vector2(55f, 65f);
             PlayerPrefs.SetInt("PickedEgg", 1);
             pickedUp = true;
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
