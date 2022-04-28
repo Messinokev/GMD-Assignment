@@ -8,6 +8,7 @@ public class SmithTrigger : MonoBehaviour
     public Dialog duringQuests;
     public Dialog firstQuestDone;
     public Dialog secondQuest;
+    public Dialog duringSecondQuest;
     public Dialog secondQuestDone;
 
     private int _questProgress;
@@ -20,6 +21,14 @@ public class SmithTrigger : MonoBehaviour
 
     private DialogManager _dialogManager;
 
+    private SpriteRenderer furnaceOffSpriteRenderer;
+    private RectTransform emptyFrameRectTrans;
+    private RectTransform haslogsRectTrans;
+    private RectTransform nologsRectTrans;
+    private Vector2 noSeeVector;
+
+    private PlayerController playerController;
+
     private void Awake()
     {
         _playerControl = new PlayerControl();
@@ -27,13 +36,22 @@ public class SmithTrigger : MonoBehaviour
 
         _questProgress = PlayerPrefs.GetInt("Quest");
 
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+
+        furnaceOffSpriteRenderer = GameObject.Find("furnaceOff").GetComponent<SpriteRenderer>();
+        emptyFrameRectTrans = GameObject.Find("EmptyFrame").GetComponent<RectTransform>();
+        haslogsRectTrans = GameObject.Find("HasLogs").GetComponent<RectTransform>();
+        nologsRectTrans = GameObject.Find("NoLogs").GetComponent<RectTransform>();
+
+        noSeeVector = new Vector2(0f, 0f);
+
         if (_questProgress > 2)
         {
-            GameObject.Find("furnaceOff").GetComponent<SpriteRenderer>().enabled = false;
+            furnaceOffSpriteRenderer.enabled = false;
         }
         else
         {
-            GameObject.Find("furnaceOff").GetComponent<SpriteRenderer>().enabled = true;
+            furnaceOffSpriteRenderer.enabled = true;
         }
     }
 
@@ -61,6 +79,18 @@ public class SmithTrigger : MonoBehaviour
         {
             _dialogManager.StartDialogWithSmith(firstQuestDone);
         }
+        if (_questProgress == 3)
+        {
+            _dialogManager.StartDialogWithSmith(secondQuest);
+        }
+        if (_questProgress == 4)
+        {
+            _dialogManager.StartDialogWithSmith(duringSecondQuest);
+        }
+        if (_questProgress == 5)
+        {
+            _dialogManager.StartDialogWithSmith(secondQuestDone);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -80,7 +110,7 @@ public class SmithTrigger : MonoBehaviour
         {
             onTrigger = false;
 
-            FindObjectOfType<DialogManager>().EndDialogWithSmith();
+            _dialogManager.EndDialogWithSmith();
         }
     }
 
@@ -99,24 +129,43 @@ public class SmithTrigger : MonoBehaviour
         }
 
         //Main Story Line
-        if (_playerControl.Player.Shoping.triggered && FindObjectOfType<DialogManager>().smithDialogText.text.Contains("(Y / UpArrow)"))
+        if (_playerControl.Player.Shoping.triggered && _dialogManager.smithDialogText.text.Contains("(UpArrow)"))
         {
             if (_questProgress == 0)
             {
-                GameObject.Find("EmptyFrame").GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
+                emptyFrameRectTrans.sizeDelta = noSeeVector;
             }
 
             if (_questProgress == 2)
             {
-                GameObject.Find("furnaceOff").GetComponent<SpriteRenderer>().enabled = false;
-                GameObject.Find("EmptyFrame").GetComponent<RectTransform>().sizeDelta = new Vector2(65, 65);
+                furnaceOffSpriteRenderer.enabled = false;
+                emptyFrameRectTrans.sizeDelta = new Vector2(125f, 125f);
+                playerController.ChangeAnimation();
+            }
+            if (_questProgress == 3)
+            {
+                emptyFrameRectTrans.sizeDelta = noSeeVector;
+                GameObject.Find("NoEgg").GetComponent<RectTransform>().sizeDelta = new Vector2(55f, 65f);
+                haslogsRectTrans.sizeDelta = noSeeVector;
+                nologsRectTrans.sizeDelta = noSeeVector;
+            }
+            if (_questProgress == 5)
+            {
+                emptyFrameRectTrans.sizeDelta = new Vector2(125f, 125f);
             }
             PlayerPrefs.SetInt("Quest", _questProgress + 1);
             _questProgress = PlayerPrefs.GetInt("Quest");
+            _dialogManager.EndDialogWithSmith();
         }
 
-        //Ignite the furnace
+        //Smith sees that you picked up the logs
         if (_questProgress == 1 && PlayerPrefs.GetInt("PickedLogs") == 1)
+        {
+            PlayerPrefs.SetInt("Quest", _questProgress + 1);
+            _questProgress = PlayerPrefs.GetInt("Quest");
+        }
+        //Smith sees that you picked up the egg
+        if (_questProgress == 4 && PlayerPrefs.GetInt("PickedEgg") == 1)
         {
             PlayerPrefs.SetInt("Quest", _questProgress + 1);
             _questProgress = PlayerPrefs.GetInt("Quest");

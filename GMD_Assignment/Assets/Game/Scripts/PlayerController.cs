@@ -20,10 +20,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float speed = 8f;
 
-    [SerializeField]  private float jumpingPower = 12f;
+    [SerializeField] private float jumpingPower = 12f;
 
     private bool isFacingRight = true;
-    
 
     public RuntimeAnimatorController unarmedController;
     public RuntimeAnimatorController swordController;
@@ -33,14 +32,21 @@ public class PlayerController : MonoBehaviour
     private static readonly int IsJumping = Animator.StringToHash("IsJumping");
     private static readonly int IsAttacking = Animator.StringToHash("IsAttacking");
 
+    private int _questProgress;
 
-    private void Start()
+    private void Awake()
     {
+        _questProgress = PlayerPrefs.GetInt("Quest");
+
+        if (_questProgress > 2)
+        {
+            ChangeAnimation();
+        }
     }
 
     void Update()
     {
-       
+
 
         //Flipping the player
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
@@ -83,7 +89,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
+
 
     private bool IsGrounded()
     {
@@ -117,6 +123,12 @@ public class PlayerController : MonoBehaviour
     }
 
     public void ChangeAnimation(InputAction.CallbackContext context)
+    {
+        isAttackAnimation = !isAttackAnimation;
+        animator.runtimeAnimatorController = isAttackAnimation ? swordController : unarmedController;
+    }
+
+    public void ChangeAnimation()
     {
         isAttackAnimation = !isAttackAnimation;
         animator.runtimeAnimatorController = isAttackAnimation ? swordController : unarmedController;

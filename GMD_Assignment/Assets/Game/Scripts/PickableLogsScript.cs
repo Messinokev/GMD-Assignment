@@ -7,7 +7,6 @@ public class PickableLogsScript : MonoBehaviour
     public bool pickedUp = false;
     private int _questProgress;
 
-    // Start is called before the first frame update
     void Start()
     {
         _questProgress = PlayerPrefs.GetInt("Quest");
@@ -26,7 +25,7 @@ public class PickableLogsScript : MonoBehaviour
         if (PlayerPrefs.GetInt("PickedLogs") == 1)
         {
             pickedUp = true;
-            GameObject.Find("NoLogs").GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
+            GameObject.Find("NoLogs").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
         }
         else
         {
@@ -44,7 +43,7 @@ public class PickableLogsScript : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player"))
         {
-            GameObject.Find("NoLogs").GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
+            GameObject.Find("NoLogs").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
             PlayerPrefs.SetInt("PickedLogs", 1);
             pickedUp = true;
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
@@ -62,7 +61,7 @@ public class PickableLogsScript : MonoBehaviour
         else if(_questProgress > 0)
         {
             PlayerPrefs.SetInt("PickedLogs", 0);
-            GameObject.Find("NoLogs").GetComponent<RectTransform>().sizeDelta = new Vector2(35, 27.5f);
+            GameObject.Find("NoLogs").GetComponent<RectTransform>().sizeDelta = new Vector2(65f, 50f);
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
             gameObject.GetComponent<BoxCollider2D>().enabled = true;
         }
