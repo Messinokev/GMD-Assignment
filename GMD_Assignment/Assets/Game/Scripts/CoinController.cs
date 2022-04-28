@@ -19,6 +19,13 @@ public class CoinController : MonoBehaviour
         SetCoinsText();
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        //Set coin text
+        SetCoinsText();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.CompareTag("Player"))
@@ -26,14 +33,12 @@ public class CoinController : MonoBehaviour
             coinCount++;
             PlayerPrefs.SetInt("Coins", coinCount);
             Destroy(gameObject);
-            SetCoinsText();
         }
     }
 
     public void LoadCoinCount()
     {
         coinCount = PlayerPrefs.GetInt("Coins");
-        SetCoinsText();
     }
 
     private void SetCoinsText()
