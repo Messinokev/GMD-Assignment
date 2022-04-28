@@ -32,9 +32,16 @@ public class PlayerController : MonoBehaviour
     private static readonly int IsJumping = Animator.StringToHash("IsJumping");
     private static readonly int IsAttacking = Animator.StringToHash("IsAttacking");
 
+    private int _questProgress;
+
     private void Awake()
     {
-        
+        _questProgress = PlayerPrefs.GetInt("Quest");
+
+        if (_questProgress > 2)
+        {
+            ChangeAnimation();
+        }
     }
 
     void Update()
@@ -100,6 +107,12 @@ public class PlayerController : MonoBehaviour
     }
 
     public void ChangeAnimation(InputAction.CallbackContext context)
+    {
+        isAttackAnimation = !isAttackAnimation;
+        animator.runtimeAnimatorController = isAttackAnimation ? swordController : unarmedController;
+    }
+
+    public void ChangeAnimation()
     {
         isAttackAnimation = !isAttackAnimation;
         animator.runtimeAnimatorController = isAttackAnimation ? swordController : unarmedController;

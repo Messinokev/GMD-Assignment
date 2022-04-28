@@ -23,12 +23,16 @@ public class SmithTrigger : MonoBehaviour
     private SpriteRenderer furnaceOffSpriteRenderer;
     private RectTransform emptyFrameRectTrans;
 
+    private PlayerController playerController;
+
     private void Awake()
     {
         _playerControl = new PlayerControl();
         _dialogManager = FindObjectOfType<DialogManager>();
 
         _questProgress = PlayerPrefs.GetInt("Quest");
+
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 
         furnaceOffSpriteRenderer = GameObject.Find("furnaceOff").GetComponent<SpriteRenderer>();
         emptyFrameRectTrans = GameObject.Find("EmptyFrame").GetComponent<RectTransform>();
@@ -116,6 +120,7 @@ public class SmithTrigger : MonoBehaviour
             {
                 furnaceOffSpriteRenderer.enabled = false;
                 emptyFrameRectTrans.sizeDelta = new Vector2(125f, 125f);
+                playerController.ChangeAnimation();
             }
             PlayerPrefs.SetInt("Quest", _questProgress + 1);
             _questProgress = PlayerPrefs.GetInt("Quest");
