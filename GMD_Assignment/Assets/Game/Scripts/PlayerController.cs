@@ -36,7 +36,6 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        
     }
 
     void Update()
@@ -52,6 +51,22 @@ public class PlayerController : MonoBehaviour
         else if (isFacingRight && horizontal < 0f)
         {
             Flip();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        var enemy = collision.GetComponent<AIPatrol>();
+        var box = collision.GetComponent<BoxController>();
+        if (enemy)
+        {
+            string enemyType = collision.tag;
+            enemy.TakeHit(25, enemyType);
+        }
+
+        if (box)
+        {
+            box.SmashBox();
         }
     }
 

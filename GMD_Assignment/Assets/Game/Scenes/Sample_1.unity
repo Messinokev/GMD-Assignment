@@ -5715,8 +5715,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1551689520}
     m_Modifications:
+    - target: {fileID: 1353666100, guid: 5d198b0b7f93c6947b62e215ee1e92cd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1638152624, guid: 5d198b0b7f93c6947b62e215ee1e92cd, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 3386078551973322753, guid: 5d198b0b7f93c6947b62e215ee1e92cd, type: 3}
       propertyPath: m_Name
+      value: Skeleton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3386078551973322753, guid: 5d198b0b7f93c6947b62e215ee1e92cd, type: 3}
+      propertyPath: m_TagString
       value: Skeleton
       objectReference: {fileID: 0}
     - target: {fileID: 3386078551973322764, guid: 5d198b0b7f93c6947b62e215ee1e92cd, type: 3}
@@ -5724,9 +5736,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 734279258}
     - target: {fileID: 3386078551973322764, guid: 5d198b0b7f93c6947b62e215ee1e92cd, type: 3}
-      propertyPath: healthBar
+      propertyPath: bodyCollider
       value: 
-      objectReference: {fileID: 171593523}
+      objectReference: {fileID: 2029793499}
     - target: {fileID: 3386078551973322765, guid: 5d198b0b7f93c6947b62e215ee1e92cd, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -7290,6 +7302,11 @@ Transform:
   m_Father: {fileID: 447532026}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2029793499 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1638152626, guid: 5d198b0b7f93c6947b62e215ee1e92cd, type: 3}
+  m_PrefabInstance: {fileID: 1381474361}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2087387201
 GameObject:
   m_ObjectHideFlags: 0

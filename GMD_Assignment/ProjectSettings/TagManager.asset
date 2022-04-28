@@ -9,6 +9,8 @@ TagManager:
   - Checkpoint
   - Smith
   - Merchant
+  - Skeleton
+  - Spider
   layers:
   - Default
   - TransparentFX
