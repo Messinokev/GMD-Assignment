@@ -18544,6 +18544,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &921410479 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1638152626, guid: 5d198b0b7f93c6947b62e215ee1e92cd, type: 3}
+  m_PrefabInstance: {fileID: 1381474361}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &942502809 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1319730438709805561, guid: 55cd6255b6172e145acf056a22ff6907, type: 3}
@@ -22228,8 +22233,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1551689520}
     m_Modifications:
+    - target: {fileID: 1353666100, guid: 5d198b0b7f93c6947b62e215ee1e92cd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3386078551973322753, guid: 5d198b0b7f93c6947b62e215ee1e92cd, type: 3}
       propertyPath: m_Name
+      value: Skeleton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3386078551973322753, guid: 5d198b0b7f93c6947b62e215ee1e92cd, type: 3}
+      propertyPath: m_TagString
       value: Skeleton
       objectReference: {fileID: 0}
     - target: {fileID: 3386078551973322764, guid: 5d198b0b7f93c6947b62e215ee1e92cd, type: 3}
@@ -22240,6 +22253,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 171593523}
+    - target: {fileID: 3386078551973322764, guid: 5d198b0b7f93c6947b62e215ee1e92cd, type: 3}
+      propertyPath: bodyCollider
+      value: 
+      objectReference: {fileID: 921410479}
     - target: {fileID: 3386078551973322765, guid: 5d198b0b7f93c6947b62e215ee1e92cd, type: 3}
       propertyPath: m_RootOrder
       value: 0
