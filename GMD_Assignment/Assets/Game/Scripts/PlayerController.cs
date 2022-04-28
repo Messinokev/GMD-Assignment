@@ -60,22 +60,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        var enemy = collision.GetComponent<AIPatrol>();
-        var box = collision.GetComponent<BoxController>();
-        if (enemy)
-        {
-            string enemyType = collision.tag;
-            enemy.TakeHit(25, enemyType);
-        }
-
-        if (box)
-        {
-            box.SmashBox();
-        }
-    }
-
     public void Jump(InputAction.CallbackContext context)
     {
         if (context.performed && IsGrounded())
