@@ -13,9 +13,7 @@ public class AIPatrol : MonoBehaviour
     
 
     private bool mustAttack;
-    private float coolDown;
     [SerializeField] private float attackRange;
-    private float previousAttackTime;
     private int damage = 25;
     private HealthBar healthBar;
     
@@ -34,15 +32,19 @@ public class AIPatrol : MonoBehaviour
     public Collider2D bodyCollider;
     public Animator animator;
 
+    public float health;
+    public float maxHealth;
+    public AIHealthBar enemyHealthBar;
+
     private static readonly int MustPatrol = Animator.StringToHash("MustPatrol");
     private static readonly int MustAttack = Animator.StringToHash("MustAttack");
 
     void Start()
     {
-        previousAttackTime = -9999f;
-        coolDown = 3f;
         rb = GetComponent<Rigidbody2D>();
         healthBar = GameObject.Find("Health bar").GetComponent<HealthBar>();
+        health = maxHealth;
+        enemyHealthBar.SetHealth(health, maxHealth);
     }
 
     // Update is called once per frame
@@ -103,6 +105,33 @@ public class AIPatrol : MonoBehaviour
         }
     }
 
+    public void TakeHit(float playerDamage, string enemyType)
+    {
+        health -= playerDamage;
+        enemyHealthBar.SetHealth(health, maxHealth);
+        if (health <= 0)
+        {
+            Debug.Log(enemyType);
+            switch (enemyType)
+            {
+                case "Spider":
+                    animator.Play("Spider_Die");
+                    break;
+                case "Skeleton":
+                    animator.Play("Skeleton_Die");
+                    break;
+            }
+
+            StartCoroutine(WaitForDieAnimation());
+        }
+    }
+
+    IEnumerator WaitForDieAnimation()
+    {
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0).Length);
+        Destroy(gameObject);
+    }
+
     void Patrol()
     {
         if (mustFlip || bodyCollider.IsTouchingLayers(groundLayer))
@@ -144,8 +173,12 @@ public class AIPatrol : MonoBehaviour
 
     private void AttackPlayer()
     {
-        if (!(Time.time > (previousAttackTime + coolDown))) return;
+        StartCoroutine(WaitForAttackCoolDown());
+    }
+    
+    IEnumerator WaitForAttackCoolDown()
+    {
         animator.SetBool(MustAttack, true);
-        previousAttackTime = Time.time;
+        yield return new WaitForSeconds(1);
     }
 }
