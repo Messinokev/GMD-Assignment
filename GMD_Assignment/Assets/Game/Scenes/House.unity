@@ -1253,7 +1253,6 @@ MonoBehaviour:
     sentences:
     - 'Hey Anke! Do you need some Health Potion? It costs: 5 coins'
     - Press (Up Arrow) if you want to buy some Health Potion!
-    - Thanks for shopping, Anke! Neverf lose hope!
   potionPrice: 5
 --- !u!61 &379516333
 BoxCollider2D:
@@ -1595,11 +1594,11 @@ MonoBehaviour:
     - Unfortunately, I am out of logs to ignite my furnace...
     - You could help me out collecting some logs from the woods...
     - I will reward and make you a special sword...
-    - 'To begin the Quest:             Press (UpArrow)'
+    - 'To begin the Forest Quest:        Press (UpArrow)'
   duringQuests:
     name: Smith Samuel
     sentences:
-    - I hope you are having fun making the Quest, Anke!
+    - I hope you are having fun making the Forest Quest, Anke!
   firstQuestDone:
     name: Smith Samuel
     sentences:
@@ -1611,10 +1610,24 @@ MonoBehaviour:
       Press (UpArrow)'
   secondQuest:
     name: Smith Samuel
-    sentences: []
+    sentences:
+    - Now it is time to go deep to the mine, Anke!
+    - You need to find the azure spider egg , which is the missing component...
+    - of the grasshopper potion, which will allow you to reach the mountains!
+    - 'To begin the Mine Quest:     Press (UpArrow)'
+  duringSecondQuest:
+    name: Smith Samuel
+    sentences:
+    - I hope you are having fun making the Mine Quest, Anke!
   secondQuestDone:
     name: Smith Samuel
-    sentences: []
+    sentences:
+    - Could you find the azure spider egg, Anke?
+    - Let's give it to me and I will make the grasshopper potion for you...
+    - and if you drink it, you will be able to make double jumps!
+    - 'Give the egg and drink the potion:
+
+      Press (UpArrow)'
   logsPickedUp: 0
 --- !u!61 &517408628
 BoxCollider2D:
@@ -3349,8 +3362,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -30, y: -5}
-  m_SizeDelta: {x: 190, y: 60}
+  m_AnchoredPosition: {x: -20, y: -5}
+  m_SizeDelta: {x: 235, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1678337724
 MonoBehaviour:
@@ -3407,7 +3420,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -3570,7 +3583,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 325, y: -185}
-  m_SizeDelta: {x: 300, y: 125}
+  m_SizeDelta: {x: 325, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1701837192
 MonoBehaviour:

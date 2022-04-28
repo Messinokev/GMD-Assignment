@@ -24,7 +24,7 @@ public class DontDestroy : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        if (_questProgress == 0)
+        if (_questProgress == 0 || _questProgress == 3)
         {
             GameObject.Find("EmptyFrame").GetComponent<RectTransform>().sizeDelta = new Vector2(125f,125f);
         }
@@ -33,9 +33,10 @@ public class DontDestroy : MonoBehaviour
             GameObject.Find("EmptyFrame").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
         }
 
-        if (_questProgress > 2)
+        if (_questProgress > 3)
         {
-            GameObject.Find("EmptyFrame").GetComponent<RectTransform>().sizeDelta = new Vector2(125f, 125f);
+            GameObject.Find("HasLogs").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
+            GameObject.Find("NoLogs").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
         }
         else
         {

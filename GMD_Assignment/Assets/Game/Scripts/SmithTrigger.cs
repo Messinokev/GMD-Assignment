@@ -8,6 +8,7 @@ public class SmithTrigger : MonoBehaviour
     public Dialog duringQuests;
     public Dialog firstQuestDone;
     public Dialog secondQuest;
+    public Dialog duringSecondQuest;
     public Dialog secondQuestDone;
 
     private int _questProgress;
@@ -22,6 +23,8 @@ public class SmithTrigger : MonoBehaviour
 
     private SpriteRenderer furnaceOffSpriteRenderer;
     private RectTransform emptyFrameRectTrans;
+    private RectTransform haslogsRectTrans;
+    private RectTransform nologsRectTrans;
 
     private PlayerController playerController;
 
@@ -36,6 +39,8 @@ public class SmithTrigger : MonoBehaviour
 
         furnaceOffSpriteRenderer = GameObject.Find("furnaceOff").GetComponent<SpriteRenderer>();
         emptyFrameRectTrans = GameObject.Find("EmptyFrame").GetComponent<RectTransform>();
+        haslogsRectTrans = GameObject.Find("HasLogs").GetComponent<RectTransform>();
+        nologsRectTrans = GameObject.Find("NoLogs").GetComponent<RectTransform>();
 
         if (_questProgress > 2)
         {
@@ -70,6 +75,18 @@ public class SmithTrigger : MonoBehaviour
         if (_questProgress == 2)
         {
             _dialogManager.StartDialogWithSmith(firstQuestDone);
+        }
+        if (_questProgress == 3)
+        {
+            _dialogManager.StartDialogWithSmith(secondQuest);
+        }
+        if (_questProgress == 4)
+        {
+            _dialogManager.StartDialogWithSmith(duringSecondQuest);
+        }
+        if (_questProgress == 5)
+        {
+            _dialogManager.StartDialogWithSmith(secondQuestDone);
         }
     }
 
@@ -122,8 +139,15 @@ public class SmithTrigger : MonoBehaviour
                 emptyFrameRectTrans.sizeDelta = new Vector2(125f, 125f);
                 playerController.ChangeAnimation();
             }
+            if (_questProgress == 3)
+            {
+                emptyFrameRectTrans.sizeDelta = new Vector2(0f, 0f);
+                haslogsRectTrans.sizeDelta = new Vector2(0f, 0f);
+                nologsRectTrans.sizeDelta = new Vector2(0f, 0f);
+            }
             PlayerPrefs.SetInt("Quest", _questProgress + 1);
             _questProgress = PlayerPrefs.GetInt("Quest");
+            _dialogManager.EndDialogWithSmith();
         }
 
         //Smith sees that you picked up the logs
