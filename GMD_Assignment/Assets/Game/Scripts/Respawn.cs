@@ -69,6 +69,7 @@ public class Respawn : MonoBehaviour
             transform.position = player.transform.position;
         }
 
+        //Delete later when game is done
         if (_playerControl.Player.LoadSaving.triggered)
         {
             if (isLogs)
@@ -88,7 +89,6 @@ public class Respawn : MonoBehaviour
         {
             logs = FindObjectOfType<PickableLogsScript>();
             isLogs = true;
-            isEgg = false;
         }
         else
         {
@@ -98,7 +98,6 @@ public class Respawn : MonoBehaviour
         {
             egg = FindObjectOfType<PickableEggScript>();
             isEgg = true;
-            isLogs = false;
         }
         else
         {
@@ -126,8 +125,14 @@ public class Respawn : MonoBehaviour
         if (collision.tag == "Checkpoint1" || collision.tag == "Checkpoint2" || collision.tag == "Checkpoint3" || collision.tag == "Checkpoint4")
         {
             respawnPoint = transform.position;
-            SaveDataWithLogs();
             checkForPickables();
+            SaveDataWithLogs();
+        }
+        if (collision.tag == "Checkpoint6" || collision.tag == "Checkpoint7" || collision.tag == "Checkpoint8" || collision.tag == "Checkpoint9")
+        {
+            respawnPoint = transform.position;
+            checkForPickables();
+            SaveDataWithEgg();
         }
         if (collision.tag == "Checkpoint")
         {
@@ -188,7 +193,6 @@ public class Respawn : MonoBehaviour
     public void LoadDataWithLogs()
     {
         DataToSave data = GeneralLoad();
-
         logs.pickedUp = data.pickedLogs;
         logs.LogsLoadedBack();
     }
@@ -196,7 +200,6 @@ public class Respawn : MonoBehaviour
     public void LoadDataWithEgg()
     {
         DataToSave data = GeneralLoad();
-
         egg.pickedUp = data.pickedEgg;
         egg.EggLoadedBack();
     }

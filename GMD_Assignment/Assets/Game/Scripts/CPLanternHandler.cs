@@ -13,7 +13,7 @@ public class CPLanternHandler : MonoBehaviour
     private Vector3 lanternOff;
     private Vector3 lanternOn;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         lanternOff = new Vector3(0, 0, 0);
@@ -25,41 +25,38 @@ public class CPLanternHandler : MonoBehaviour
         cp4LanternOff = GameObject.Find("cp4Lantern_off").GetComponent<Transform>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (tag == "Checkpoint1" && collision.tag == "Player")
+        if (collision.tag == "Player")
         {
-            cp1LanternOff.localScale = lanternOff;
-            cp2LanternOff.localScale = lanternOn;
-            cp3LanternOff.localScale = lanternOn;
-            cp4LanternOff.localScale = lanternOn;
-        }
-        if (tag == "Checkpoint2" && collision.tag == "Player")
-        {
-            cp1LanternOff.localScale = lanternOn;
-            cp2LanternOff.localScale = lanternOff;
-            cp3LanternOff.localScale = lanternOn;
-            cp4LanternOff.localScale = lanternOn;
-        }
-        if (tag == "Checkpoint3" && collision.tag == "Player")
-        {
-            cp1LanternOff.localScale = lanternOn;
-            cp2LanternOff.localScale = lanternOn;
-            cp3LanternOff.localScale = lanternOff;
-            cp4LanternOff.localScale = lanternOn;
-        }
-        if (tag == "Checkpoint4" && collision.tag == "Player")
-        {
-            cp1LanternOff.localScale = lanternOn;
-            cp2LanternOff.localScale = lanternOn;
-            cp3LanternOff.localScale = lanternOn;
-            cp4LanternOff.localScale = lanternOff;
+            if (tag == "Checkpoint1" || tag == "Checkpoint6")
+            {
+                cp1LanternOff.localScale = lanternOff;
+                cp2LanternOff.localScale = lanternOn;
+                cp3LanternOff.localScale = lanternOn;
+                cp4LanternOff.localScale = lanternOn;
+            }
+            if (tag == "Checkpoint2" || tag == "Checkpoint7")
+            {
+                cp1LanternOff.localScale = lanternOn;
+                cp2LanternOff.localScale = lanternOff;
+                cp3LanternOff.localScale = lanternOn;
+                cp4LanternOff.localScale = lanternOn;
+            }
+            if (tag == "Checkpoint3" || tag == "Checkpoint8")
+            {
+                cp1LanternOff.localScale = lanternOn;
+                cp2LanternOff.localScale = lanternOn;
+                cp3LanternOff.localScale = lanternOff;
+                cp4LanternOff.localScale = lanternOn;
+            }
+            if (tag == "Checkpoint4" || tag == "Checkpoint9")
+            {
+                cp1LanternOff.localScale = lanternOn;
+                cp2LanternOff.localScale = lanternOn;
+                cp3LanternOff.localScale = lanternOn;
+                cp4LanternOff.localScale = lanternOff;
+            }
         }
     }
 }

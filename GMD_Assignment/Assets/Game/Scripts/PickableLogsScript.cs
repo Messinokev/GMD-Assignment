@@ -7,7 +7,6 @@ public class PickableLogsScript : MonoBehaviour
     public bool pickedUp = false;
     private int _questProgress;
 
-    // Start is called before the first frame update
     void Start()
     {
         _questProgress = PlayerPrefs.GetInt("Quest");

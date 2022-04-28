@@ -6,7 +6,6 @@ public class DontDestroy : MonoBehaviour
 {
     private int _questProgress;
 
-    // Start is called before the first frame update
     void Start()
     {
         _questProgress = PlayerPrefs.GetInt("Quest");
@@ -38,22 +37,11 @@ public class DontDestroy : MonoBehaviour
             GameObject.Find("HasLogs").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
             GameObject.Find("NoLogs").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
         }
-        /*else
-        {
-            GameObject.Find("HasEgg").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
-            GameObject.Find("NoEgg").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
-        }*/
-
+        
         if (_questProgress > 5 || _questProgress < 3)
         {
             GameObject.Find("HasEgg").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
             GameObject.Find("NoEgg").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

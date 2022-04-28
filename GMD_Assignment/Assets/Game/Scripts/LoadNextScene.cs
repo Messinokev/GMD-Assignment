@@ -36,7 +36,6 @@ public class LoadNextScene : MonoBehaviour
                 PlayerPrefs.SetInt("AtMine", 1);
             }
             SceneManager.LoadScene(nextSceneToLoad);
-            //GameObject.Find("Respawn").GetComponent<Respawn>().checkForPickables();
         }
     }
 
