@@ -10,48 +10,17 @@ public class Respawn : MonoBehaviour
     public PlayerControl _playerControl;
 
     private HealthBar health;
+    private PlayerController coin;
     private HealthPotion potion;
-
     private PickableLogsScript logs;
-    private bool isLogs = false;
-    private PickableEggScript egg;
-    private bool isEgg = false;
-
-    private void Start()
-    {
-        checkForPickables();
-
-        if (isLogs)
-        {
-            LoadDataWithLogs();
-        }
-        if (isEgg)
-        {
-            LoadDataWithEgg();
-        }
-
-        if (PlayerPrefs.GetInt("AtMine") == 1)
-        {
-            GameObject.Find("Player").transform.position = new Vector3(19.5f, -4.5f, 0f);
-            GameObject.Find("Main Camera").transform.position = new Vector3(19.3f, -1.5f, -10f);
-            PlayerPrefs.SetInt("AtMine", 0);
-        }
-
-        if (PlayerPrefs.GetInt("PickedEgg") == 1)
-        {
-            if (PlayerPrefs.GetInt("Quest") == 4 || PlayerPrefs.GetInt("Quest") == 5)
-            {
-                GameObject.Find("NoEgg").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
-            }
-        }
-    }
 
     private void Awake()
     {
         _playerControl = new PlayerControl();
-
         health = FindObjectOfType<HealthBar>();
+        coin = FindObjectOfType<PlayerController>();
         potion = FindObjectOfType<HealthPotion>();
+        logs = FindObjectOfType<PickableLogsScript>();
     }
 
     private void FixedUpdate()
@@ -69,39 +38,9 @@ public class Respawn : MonoBehaviour
             transform.position = player.transform.position;
         }
 
-        //Delete later when game is done
         if (_playerControl.Player.LoadSaving.triggered)
         {
-            if (isLogs)
-            {
-                LoadDataWithLogs();
-            }
-            if (isEgg)
-            {
-                LoadDataWithEgg();
-            }
-        }
-    }
-
-    public void checkForPickables()
-    {
-        if (FindObjectOfType<PickableLogsScript>())
-        {
-            logs = FindObjectOfType<PickableLogsScript>();
-            isLogs = true;
-        }
-        else
-        {
-            isLogs = false;
-        }
-        if (FindObjectOfType<PickableEggScript>())
-        {
-            egg = FindObjectOfType<PickableEggScript>();
-            isEgg = true;
-        }
-        else
-        {
-            isEgg = false;
+            LoadData();
         }
     }
 
@@ -122,50 +61,24 @@ public class Respawn : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Checkpoint1" || collision.tag == "Checkpoint2" || collision.tag == "Checkpoint3" || collision.tag == "Checkpoint4")
-        {
-            respawnPoint = transform.position;
-            checkForPickables();
-            SaveDataWithLogs();
-        }
-        if (collision.tag == "Checkpoint6" || collision.tag == "Checkpoint7" || collision.tag == "Checkpoint8" || collision.tag == "Checkpoint9")
-        {
-            respawnPoint = transform.position;
-            checkForPickables();
-            SaveDataWithEgg();
-        }
         if (collision.tag == "Checkpoint")
         {
-            //respawnPoint = transform.position;
-            SaveDataWithLogs();
+            respawnPoint = transform.position;
+            SaveData();
         }
     }
 
-    public void SaveDataWithLogs()
+    public void SaveData()
     {
+        health = FindObjectOfType<HealthBar>();
         int coin = PlayerPrefs.GetInt("Coins");
-        Vector3 camPos = GameObject.Find("Main Camera").transform.position;
-        float[] camPosition = new float[3];
-        camPosition[0] = camPos.x;
-        camPosition[1] = camPos.y;
-        camPosition[2] = camPos.z;
+        potion = FindObjectOfType<HealthPotion>();
+        logs = FindObjectOfType<PickableLogsScript>();
 
-        SaveSystem.SaveStatsWithLogs(health, coin, potion, this, logs, camPosition);
+        SaveSystem.SaveStats(health, coin, potion, this, logs);
     }
 
-    public void SaveDataWithEgg()
-    {
-        int coin = PlayerPrefs.GetInt("Coins");
-        Vector3 camPos = GameObject.Find("Main Camera").transform.position;
-        float[] camPosition = new float[3];
-        camPosition[0] = camPos.x;
-        camPosition[1] = camPos.y;
-        camPosition[2] = camPos.z;
-
-        SaveSystem.SaveStatsWithEgg(health, coin, potion, this, camPosition, egg);
-    }
-
-    private DataToSave GeneralLoad()
+    public void LoadData()
     {
         DataToSave data = SaveSystem.LoadStats();
 
@@ -174,33 +87,14 @@ public class Respawn : MonoBehaviour
         PlayerPrefs.SetInt("Coins", data.coinCount);
         FindObjectOfType<CoinController>().LoadCoinCount();
         potion.potionCount = data.potionCount;
+        logs.pickedUp = data.pickedLogs;
+        logs.LogsLoadedBack();
+
 
         Vector3 playerPostion;
         playerPostion.x = data.playerPosition[0];
         playerPostion.y = data.playerPosition[1];
         playerPostion.z = data.playerPosition[2];
         GameObject.Find("Player").transform.position = playerPostion;
-
-        Vector3 cameraPostion;
-        cameraPostion.x = data.cameraPosition[0];
-        cameraPostion.y = data.cameraPosition[1];
-        cameraPostion.z = data.cameraPosition[2];
-        GameObject.Find("Main Camera").transform.position = cameraPostion;
-
-        return data;
-    }
-
-    public void LoadDataWithLogs()
-    {
-        DataToSave data = GeneralLoad();
-        logs.pickedUp = data.pickedLogs;
-        logs.LogsLoadedBack();
-    }
-
-    public void LoadDataWithEgg()
-    {
-        DataToSave data = GeneralLoad();
-        egg.pickedUp = data.pickedEgg;
-        egg.EggLoadedBack();
     }
 }
