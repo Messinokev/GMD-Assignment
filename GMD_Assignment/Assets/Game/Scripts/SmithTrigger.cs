@@ -25,6 +25,7 @@ public class SmithTrigger : MonoBehaviour
     private RectTransform emptyFrameRectTrans;
     private RectTransform haslogsRectTrans;
     private RectTransform nologsRectTrans;
+    private Vector2 noSeeVector;
 
     private PlayerController playerController;
 
@@ -41,6 +42,8 @@ public class SmithTrigger : MonoBehaviour
         emptyFrameRectTrans = GameObject.Find("EmptyFrame").GetComponent<RectTransform>();
         haslogsRectTrans = GameObject.Find("HasLogs").GetComponent<RectTransform>();
         nologsRectTrans = GameObject.Find("NoLogs").GetComponent<RectTransform>();
+
+        noSeeVector = new Vector2(0f, 0f);
 
         if (_questProgress > 2)
         {
@@ -130,7 +133,7 @@ public class SmithTrigger : MonoBehaviour
         {
             if (_questProgress == 0)
             {
-                emptyFrameRectTrans.sizeDelta = new Vector2(0f, 0f);
+                emptyFrameRectTrans.sizeDelta = noSeeVector;
             }
 
             if (_questProgress == 2)
@@ -141,9 +144,10 @@ public class SmithTrigger : MonoBehaviour
             }
             if (_questProgress == 3)
             {
-                emptyFrameRectTrans.sizeDelta = new Vector2(0f, 0f);
-                haslogsRectTrans.sizeDelta = new Vector2(0f, 0f);
-                nologsRectTrans.sizeDelta = new Vector2(0f, 0f);
+                emptyFrameRectTrans.sizeDelta = noSeeVector;
+                GameObject.Find("NoEgg").GetComponent<RectTransform>().sizeDelta = new Vector2(55f, 65f);
+                haslogsRectTrans.sizeDelta = noSeeVector;
+                nologsRectTrans.sizeDelta = noSeeVector;
             }
             PlayerPrefs.SetInt("Quest", _questProgress + 1);
             _questProgress = PlayerPrefs.GetInt("Quest");

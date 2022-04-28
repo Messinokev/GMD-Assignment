@@ -26,7 +26,7 @@ public class DontDestroy : MonoBehaviour
 
         if (_questProgress == 0 || _questProgress == 3)
         {
-            GameObject.Find("EmptyFrame").GetComponent<RectTransform>().sizeDelta = new Vector2(125f,125f);
+            GameObject.Find("EmptyFrame").GetComponent<RectTransform>().sizeDelta = new Vector2(125f, 125f);
         }
         else
         {
@@ -40,13 +40,14 @@ public class DontDestroy : MonoBehaviour
         }
         else
         {
-           
+            GameObject.Find("HasEgg").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
+            GameObject.Find("NoEgg").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+
     }
 }
