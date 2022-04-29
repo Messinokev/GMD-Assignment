@@ -140,6 +140,7 @@ public class SmithTrigger : MonoBehaviour
             {
                 furnaceOffSpriteRenderer.enabled = false;
                 emptyFrameRectTrans.sizeDelta = new Vector2(125f, 125f);
+                playerController.isAttackAnimation = true;
                 playerController.ChangeAnimation();
             }
             if (_questProgress == 3)

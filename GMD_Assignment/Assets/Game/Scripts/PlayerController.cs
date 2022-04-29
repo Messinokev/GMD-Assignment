@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     public RuntimeAnimatorController unarmedController;
     public RuntimeAnimatorController swordController;
-    private bool isAttackAnimation = false;
+    public bool isAttackAnimation = false;
 
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int IsJumping = Animator.StringToHash("IsJumping");
@@ -40,8 +40,9 @@ public class PlayerController : MonoBehaviour
 
         if (_questProgress > 2)
         {
-            ChangeAnimation();
+            isAttackAnimation = true;
         }
+        ChangeAnimation();
     }
 
     void Update()
@@ -130,7 +131,7 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeAnimation()
     {
-        isAttackAnimation = !isAttackAnimation;
+        //isAttackAnimation = !isAttackAnimation;
         animator.runtimeAnimatorController = isAttackAnimation ? swordController : unarmedController;
     }
 }
