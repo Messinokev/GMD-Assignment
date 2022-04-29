@@ -296,11 +296,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1716694168, guid: 546f44e10fb126047a7069a245e74902, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7615850432292130436, guid: 546f44e10fb126047a7069a245e74902, type: 3}
       propertyPath: m_Name
       value: Spider
+      objectReference: {fileID: 0}
+    - target: {fileID: 7615850432292130436, guid: 546f44e10fb126047a7069a245e74902, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7615850432292130457, guid: 546f44e10fb126047a7069a245e74902, type: 3}
       propertyPath: m_RootOrder
@@ -1686,6 +1690,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box
       objectReference: {fileID: 0}
+    - target: {fileID: 4194879366717946128, guid: 58e55ec1459005f49aa3682ff12b8323, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4194879366717946129, guid: 58e55ec1459005f49aa3682ff12b8323, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -2146,7 +2154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6bffcf2b430ac948b7d8e4514207e15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneToLoad: 0
+  nextSceneToLoad: 1
 --- !u!61 &1264487564
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2436,7 +2444,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441852572}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.97, y: -6.38, z: 0}
+  m_LocalPosition: {x: 2.76, y: -3.91, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1116332343}
