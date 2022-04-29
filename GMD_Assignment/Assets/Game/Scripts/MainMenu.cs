@@ -17,9 +17,7 @@ public class MainMenu : MonoBehaviour
         if (GameObject.Find("PauseCanvas"))
         {
             GameObject.Find("PauseCanvas").GetComponent<PauseMenu>().GameIsPaused = false;
-        }
-        
-        
+        }  
     }
 
     public void QuitGame()

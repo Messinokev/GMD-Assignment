@@ -165,9 +165,10 @@ MonoBehaviour:
     m_Bits: 64
   animator: {fileID: 822295484227325745}
   speed: 8
-  jumpingPower: 12
+  jumpingPower: 11
   unarmedController: {fileID: 9100000, guid: dcabd24ca2fd2eb44b25c39c09fe8821, type: 2}
   swordController: {fileID: 9100000, guid: 0aca2e9e52311c748811ff498627b1a7, type: 2}
+  isAttackAnimation: 0
 --- !u!114 &822295484227325738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,6 +278,50 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: b68bcd86-967b-4757-a953-13ef48820907
     m_ActionName: Player/SwitchWeapon[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 39d68345-3d68-426c-b5ae-28c8841eb5f1
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bf15f5b9-e848-4cc7-a502-fae114fd9b07
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 656ed394-1d3c-4f32-a3ea-697132ca6025
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3bc2f515-a268-414f-b962-8ca24736ce37
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 102db0b1-3d8b-4da1-99d8-892a64b18197
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8dc62e7a-9f8d-437e-8e8b-c10d7d35ad66
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 30abe874-8c1e-4e60-b1aa-7d073cecd0dc
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c83ad794-b801-4e45-9c64-d6308f22d828
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 83ab68b1-2a5e-4ee3-b092-1a04d46eb7ee
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e2a9dd31-d481-49e7-aa71-19ccdc1e53e7
+    m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1b7adc0e-68d4-4fa7-b70b-580e9a079c8f
+    m_ActionName: UI/PauseGame[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -297,7 +342,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2.25
+  m_GravityScale: 2.35
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
