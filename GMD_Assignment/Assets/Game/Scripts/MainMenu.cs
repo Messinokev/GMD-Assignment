@@ -13,6 +13,10 @@ public class MainMenu : MonoBehaviour
         {
             transform.position = new Vector3(19.4593678f, -4.46455145f, 0);
         }
+        if (GameObject.Find("PauseCanvas"))
+        {
+            GameObject.Find("PauseCanvas").GetComponentInChildren<PauseMenu>().Resume();
+        }
     }
 
     public void QuitGame()
@@ -33,11 +37,7 @@ public class MainMenu : MonoBehaviour
         if (File.Exists(path))
         {
             File.Delete(path);
-            Debug.Log("Deleted File");
         }
-
-        /*File.Create(path);
-        Debug.Log("Created File");*/
 
         SceneManager.LoadScene(1);
     }
