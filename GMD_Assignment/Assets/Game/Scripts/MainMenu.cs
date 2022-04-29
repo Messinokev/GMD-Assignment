@@ -9,14 +9,17 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadScene(1);
+        Time.timeScale = 1f;
         if (PlayerPrefs.GetInt("AtMine") == 1)
         {
             transform.position = new Vector3(19.4593678f, -4.46455145f, 0);
         }
         if (GameObject.Find("PauseCanvas"))
         {
-            GameObject.Find("PauseCanvas").GetComponentInChildren<PauseMenu>().Resume();
+            GameObject.Find("PauseCanvas").GetComponent<PauseMenu>().GameIsPaused = false;
         }
+        
+        
     }
 
     public void QuitGame()
@@ -40,5 +43,10 @@ public class MainMenu : MonoBehaviour
         }
 
         SceneManager.LoadScene(1);
+        Time.timeScale = 1f;
+        if (GameObject.Find("PauseCanvas"))
+        {
+            GameObject.Find("PauseCanvas").GetComponent<PauseMenu>().GameIsPaused = false;
+        }
     }
 }
