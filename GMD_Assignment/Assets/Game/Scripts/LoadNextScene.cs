@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class LoadNextScene : MonoBehaviour
@@ -6,13 +7,14 @@ public class LoadNextScene : MonoBehaviour
     [SerializeField] private int nextSceneToLoad = 1;
 
     public PlayerControl _playerControl;
+    private PlayerInput _playerInput;
     private bool atEntrance;
-
 
     private void Awake()
     {
         _playerControl = new PlayerControl();
         atEntrance = false;
+        _playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
     }
 
     private void OnEnable()
@@ -27,9 +29,12 @@ public class LoadNextScene : MonoBehaviour
 
     private void Update()
     {
-        bool upArrowPressed = _playerControl.Player.SceneLoad.triggered;
+        if (!_playerInput)
+        {
+            _playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
+        }
 
-        if (atEntrance && upArrowPressed)
+        if (atEntrance && _playerInput.actions["SceneLoad"].ReadValue<float>() > 0)
         {
             if (nextSceneToLoad == 2)
             {

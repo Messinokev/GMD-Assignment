@@ -264,10 +264,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 822295484227325736, guid: 8225e2e998595dd43a31f5fd8b261627, type: 3}
-      propertyPath: jumpingPower
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 822295484227325737, guid: 8225e2e998595dd43a31f5fd8b261627, type: 3}
       propertyPath: m_Name
       value: Player
@@ -315,10 +311,6 @@ PrefabInstance:
     - target: {fileID: 822295484227325748, guid: 8225e2e998595dd43a31f5fd8b261627, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 822295484227325749, guid: 8225e2e998595dd43a31f5fd8b261627, type: 3}
-      propertyPath: m_GravityScale
-      value: 2.35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8225e2e998595dd43a31f5fd8b261627, type: 3}
@@ -26949,7 +26941,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -5.5, y: -1}
+  m_Offset: {x: -5.3, y: -1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -26960,7 +26952,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 2.5}
+  m_Size: {x: 1.26, y: 2.5}
   m_EdgeRadius: 0
 --- !u!1 &1705940019
 GameObject:
@@ -28498,6 +28490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resumeButton: {fileID: 323093854}
+  resumeButtonSelected: 1
   backButton: {fileID: 372705481}
 --- !u!1 &1872657995 stripped
 GameObject:
