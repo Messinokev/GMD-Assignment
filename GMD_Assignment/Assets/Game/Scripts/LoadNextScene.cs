@@ -41,6 +41,7 @@ public class LoadNextScene : MonoBehaviour
                 PlayerPrefs.SetInt("AtMine", 1);
             }
             SceneManager.LoadScene(nextSceneToLoad);
+            GameObject.Find("Volume").GetComponent<VolumeSettings>().alreadyFound = false;
         }
     }
 

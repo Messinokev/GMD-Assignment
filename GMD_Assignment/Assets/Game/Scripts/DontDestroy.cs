@@ -5,6 +5,13 @@ using UnityEngine;
 public class DontDestroy : MonoBehaviour
 {
     private int _questProgress;
+    private RectTransform emptyFrame;
+    private RectTransform hasLogs;
+    private RectTransform noLogs;
+    private RectTransform hasEgg;
+    private RectTransform noEgg;
+    private bool alreadyFound = false;
+
 
     void Start()
     {
@@ -22,26 +29,36 @@ public class DontDestroy : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+    }
 
-        if (_questProgress == 0 || _questProgress == 3)
+    private void Update()
+    {
+        if (!alreadyFound)
         {
-            GameObject.Find("EmptyFrame").GetComponent<RectTransform>().sizeDelta = new Vector2(125f, 125f);
-        }
-        else
-        {
-            GameObject.Find("EmptyFrame").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
-        }
+            if (GameObject.Find("EmptyFrame"))
+            {
+                if (_questProgress == 0 || _questProgress == 3)
+                {
+                    GameObject.Find("EmptyFrame").GetComponent<RectTransform>().sizeDelta = new Vector2(125f, 125f);
+                }
+                else
+                {
+                    GameObject.Find("EmptyFrame").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
+                }
 
-        if (_questProgress > 3)
-        {
-            GameObject.Find("HasLogs").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
-            GameObject.Find("NoLogs").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
-        }
-        
-        if (_questProgress > 5 || _questProgress < 3)
-        {
-            GameObject.Find("HasEgg").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
-            GameObject.Find("NoEgg").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
+                if (_questProgress > 3)
+                {
+                    GameObject.Find("HasLogs").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
+                    GameObject.Find("NoLogs").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
+                }
+
+                if (_questProgress > 5 || _questProgress < 3)
+                {
+                    GameObject.Find("HasEgg").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
+                    GameObject.Find("NoEgg").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
+                }
+                alreadyFound = true;
+            }
         }
     }
 }
