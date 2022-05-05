@@ -42,7 +42,6 @@ public class PlayerController : MonoBehaviour
         {
             isAttackAnimation = true;
         }
-        ChangeAnimation();
     }
 
     void Update()
@@ -82,7 +81,7 @@ public class PlayerController : MonoBehaviour
         if (context.performed && IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-            animator.SetBool(IsJumping, true);
+            animator.Play("Player_Jump");
         }
         else
         {
@@ -115,23 +114,12 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            animator.SetBool(IsAttacking, true);
+            animator.Play("Player_Sword_Attack1");
         }
-        else
-        {
-            animator.SetBool(IsAttacking, false);
-        }
-    }
-
-    public void ChangeAnimation(InputAction.CallbackContext context)
-    {
-        isAttackAnimation = !isAttackAnimation;
-        animator.runtimeAnimatorController = isAttackAnimation ? swordController : unarmedController;
     }
 
     public void ChangeAnimation()
     {
-        //isAttackAnimation = !isAttackAnimation;
         animator.runtimeAnimatorController = isAttackAnimation ? swordController : unarmedController;
     }
 }

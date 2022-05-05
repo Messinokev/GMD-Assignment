@@ -98,15 +98,6 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SwitchWeapon"",
-                    ""type"": ""Button"",
-                    ""id"": ""b68bcd86-967b-4757-a953-13ef48820907"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -338,17 +329,6 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""LoadSaving"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""03045897-8051-45bc-a9d5-bb591a32ddfb"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SwitchWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -903,7 +883,6 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
         m_Player_ContinueDialog = m_Player.FindAction("ContinueDialog", throwIfNotFound: true);
         m_Player_Shoping = m_Player.FindAction("Shoping", throwIfNotFound: true);
         m_Player_LoadSaving = m_Player.FindAction("LoadSaving", throwIfNotFound: true);
-        m_Player_SwitchWeapon = m_Player.FindAction("SwitchWeapon", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -984,7 +963,6 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ContinueDialog;
     private readonly InputAction m_Player_Shoping;
     private readonly InputAction m_Player_LoadSaving;
-    private readonly InputAction m_Player_SwitchWeapon;
     public struct PlayerActions
     {
         private @PlayerControl m_Wrapper;
@@ -997,7 +975,6 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
         public InputAction @ContinueDialog => m_Wrapper.m_Player_ContinueDialog;
         public InputAction @Shoping => m_Wrapper.m_Player_Shoping;
         public InputAction @LoadSaving => m_Wrapper.m_Player_LoadSaving;
-        public InputAction @SwitchWeapon => m_Wrapper.m_Player_SwitchWeapon;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1031,9 +1008,6 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
                 @LoadSaving.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLoadSaving;
                 @LoadSaving.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLoadSaving;
                 @LoadSaving.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLoadSaving;
-                @SwitchWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeapon;
-                @SwitchWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeapon;
-                @SwitchWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeapon;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1062,9 +1036,6 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
                 @LoadSaving.started += instance.OnLoadSaving;
                 @LoadSaving.performed += instance.OnLoadSaving;
                 @LoadSaving.canceled += instance.OnLoadSaving;
-                @SwitchWeapon.started += instance.OnSwitchWeapon;
-                @SwitchWeapon.performed += instance.OnSwitchWeapon;
-                @SwitchWeapon.canceled += instance.OnSwitchWeapon;
             }
         }
     }
@@ -1192,7 +1163,6 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
         void OnContinueDialog(InputAction.CallbackContext context);
         void OnShoping(InputAction.CallbackContext context);
         void OnLoadSaving(InputAction.CallbackContext context);
-        void OnSwitchWeapon(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -111,7 +111,6 @@ public class AIPatrol : MonoBehaviour
         enemyHealthBar.SetHealth(health, maxHealth);
         if (health <= 0)
         {
-            Debug.Log(enemyType);
             switch (enemyType)
             {
                 case "Spider":
