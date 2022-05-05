@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
         {
             isAttackAnimation = true;
         }
+        ChangeAnimation();
     }
 
     void Update()
