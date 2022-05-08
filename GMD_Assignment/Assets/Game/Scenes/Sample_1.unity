@@ -4597,6 +4597,10 @@ MonoBehaviour:
     name: 
     sentences:
     - You can't enter to the forest until you have accepted the Forest Quest!
+  finsihedForestdialog:
+    name: 
+    sentences:
+    - You can't enter, since you've already finished the Forest Quest!
 --- !u!1 &429398278
 GameObject:
   m_ObjectHideFlags: 0
@@ -24842,6 +24846,10 @@ MonoBehaviour:
     name: 
     sentences:
     - You can't enter to the mine until you have accepted the Mine Quest!
+  finsihedMinedialog:
+    name: 
+    sentences:
+    - You can't enter, since you've already finished the Mine Quest!
 --- !u!61 &1404362993
 BoxCollider2D:
   m_ObjectHideFlags: 0
