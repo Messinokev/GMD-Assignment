@@ -36,7 +36,8 @@ public class HealthBar : MonoBehaviour
         {
             animator = GameObject.Find("Player").GetComponent<Animator>();
         }
-        if (respawn == null) {
+        if (respawn == null)
+        {
             respawn = GetComponent<Respawn>();
         }
         SetHPText(currentHealth);
@@ -73,10 +74,12 @@ public class HealthBar : MonoBehaviour
             //Die
             if (!dead)
             {
-                animator.SetBool(die, true);
                 dead = true;
+                animator.SetBool(die, true);
+                    
+                Invoke(nameof(PlayerRevive), 1.35f);
 
-                Invoke(nameof(PlayerRevive), 1.5f);
+                currentHealth = 0;
             }
         }
         SetHPText();

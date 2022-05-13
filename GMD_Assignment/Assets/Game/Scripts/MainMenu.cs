@@ -55,5 +55,12 @@ public class MainMenu : MonoBehaviour
         {
             GameObject.Find("PauseCanvas").GetComponent<PauseMenu>().GameIsPaused = false;
         }
+        if (GameObject.Find("Health bar"))
+        {
+            GameObject.Find("Health bar").GetComponent<HealthBar>().currentHealth = 100;
+            GameObject.Find("Health bar").GetComponent<HealthBar>().SetHealth(100);
+            GameObject.Find("Potion").GetComponent<HealthPotion>().potionCount = 1;
+            GameObject.Find("Potion").GetComponent<HealthPotion>().SetPotionCountText();
+        }
     }
 }

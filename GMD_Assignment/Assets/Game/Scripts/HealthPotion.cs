@@ -73,7 +73,7 @@ public class HealthPotion : MonoBehaviour
         }
     }
 
-    private void SetPotionCountText()
+    public void SetPotionCountText()
     {
         potionCountText.text = potionCount.ToString();
     }
