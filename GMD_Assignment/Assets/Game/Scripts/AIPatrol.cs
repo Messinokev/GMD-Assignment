@@ -14,7 +14,7 @@ public class AIPatrol : MonoBehaviour
 
     private bool mustAttack;
     [SerializeField] private float attackRange;
-    private int damage = 25;
+    private int damage = 15;
     private HealthBar healthBar;
 
 
@@ -172,12 +172,6 @@ public class AIPatrol : MonoBehaviour
 
     private void AttackPlayer()
     {
-        StartCoroutine(WaitForAttackCoolDown());
-    }
-
-    IEnumerator WaitForAttackCoolDown()
-    {
         animator.SetBool(MustAttack, true);
-        yield return new WaitForSeconds(1);
     }
 }
