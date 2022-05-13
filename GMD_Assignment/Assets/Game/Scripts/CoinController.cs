@@ -18,6 +18,10 @@ public class CoinController : MonoBehaviour
 
         SetCoinsText();
     }
+    void Update()
+    {
+        LoadCoinCount();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
