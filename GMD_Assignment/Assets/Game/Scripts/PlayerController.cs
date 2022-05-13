@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
     {
         var enemy = collision.GetComponent<AIPatrol>();
         var box = collision.GetComponent<BoxController>();
+        var lever = collision.GetComponent<LeverController>();
         if (enemy)
         {
             string enemyType = collision.tag;
@@ -74,6 +75,11 @@ public class PlayerController : MonoBehaviour
         if (box)
         {
             box.SmashBox();
+        }
+
+        if (lever)
+        {
+            lever.Pull();
         }
     }
 

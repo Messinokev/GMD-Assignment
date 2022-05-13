@@ -19,6 +19,9 @@ TagManager:
   - Checkpoint7
   - Checkpoint8
   - Checkpoint9
+  - Spider
+  - Skeleton
+  - Lever
   layers:
   - Default
   - TransparentFX
