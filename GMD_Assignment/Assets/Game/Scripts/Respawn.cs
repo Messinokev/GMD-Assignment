@@ -68,19 +68,6 @@ public class Respawn : MonoBehaviour
         {
             transform.position = player.transform.position;
         }
-
-        //Delete later when game is done
-        if (_playerControl.Player.LoadSaving.triggered)
-        {
-            if (isLogs)
-            {
-                LoadDataWithLogs();
-            }
-            if (isEgg)
-            {
-                LoadDataWithEgg();
-            }
-        }
     }
 
     public void checkForPickables()
