@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpingPower = 12f;
 
     private bool isFacingRight = true;
+    public bool canJump;
 
     public RuntimeAnimatorController unarmedController;
     public RuntimeAnimatorController swordController;
@@ -43,12 +44,12 @@ public class PlayerController : MonoBehaviour
             isAttackAnimation = true;
         }
         ChangeAnimation();
+
+        canJump = true;
     }
 
     void Update()
     {
-
-
         //Flipping the player
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         if (!isFacingRight && horizontal > 0f)
@@ -85,7 +86,7 @@ public class PlayerController : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.performed && IsGrounded())
+        if (context.performed && IsGrounded() && canJump == true)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
             animator.Play("Player_Jump");

@@ -42,6 +42,7 @@ public class LoadNextScene : MonoBehaviour
             } 
             SceneManager.LoadScene(nextSceneToLoad);
             GameObject.Find("Volume").GetComponent<VolumeSettings>().alreadyFound = false;
+            GameObject.Find("Player").GetComponent<PlayerController>().canJump = true;
         }
     }
 

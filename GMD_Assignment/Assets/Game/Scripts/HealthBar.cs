@@ -20,7 +20,6 @@ public class HealthBar : MonoBehaviour
 
     Respawn respawn;
 
-
     private void Start()
     {
         HPtext = GameObject.Find("HPText").GetComponent<TextMeshProUGUI>();
@@ -74,6 +73,7 @@ public class HealthBar : MonoBehaviour
             //Die
             if (!dead)
             {
+                GameObject.Find("Player").GetComponent<PlayerController>().canJump = false;
                 dead = true;
                 animator.SetBool(die, true);
                     
@@ -100,6 +100,7 @@ public class HealthBar : MonoBehaviour
 
     public void PlayerRevive()
     {
+        GameObject.Find("Player").GetComponent<PlayerController>().canJump = true;
         animator.SetBool(idle, true);
 
         respawn.SetPlayerToSpawn();
