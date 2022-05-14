@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 public class LoadNextScene : MonoBehaviour
 {
     [SerializeField] private int nextSceneToLoad = 1;
-
     public PlayerControl _playerControl;
     private PlayerInput _playerInput;
     private bool atEntrance;

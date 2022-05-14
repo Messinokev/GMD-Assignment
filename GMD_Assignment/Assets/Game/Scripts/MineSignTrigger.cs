@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MineSignTrigger : MonoBehaviour
@@ -17,12 +15,12 @@ public class MineSignTrigger : MonoBehaviour
         if (_questProgress > 3 && _questProgress < 6)
         {
             GameObject.Find("mineSign").GetComponent<BoxCollider2D>().enabled = false;
-            this.GetComponent<BoxCollider2D>().enabled = false;
+            GetComponent<BoxCollider2D>().enabled = false;
         }
         else
         {
             GameObject.Find("mineSign").GetComponent<BoxCollider2D>().enabled = true;
-            this.GetComponent<BoxCollider2D>().enabled = true;
+            GetComponent<BoxCollider2D>().enabled = true;
         }
     }
 
@@ -39,7 +37,6 @@ public class MineSignTrigger : MonoBehaviour
                 _dialogManager.StartDialogWithSign(finsihedMinedialog);
             }
         }
-
     }
 
     private void OnTriggerExit2D(Collider2D collision)

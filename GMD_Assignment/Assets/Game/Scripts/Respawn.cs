@@ -1,17 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Respawn : MonoBehaviour
 {
     private Vector3 respawnPoint;
     [SerializeField] private Transform player;
-
     public PlayerControl _playerControl;
-
     private HealthBar health;
     private HealthPotion potion;
-
     private PickableLogsScript logs;
     private bool isLogs = false;
     private PickableEggScript egg;
@@ -123,10 +118,12 @@ public class Respawn : MonoBehaviour
         }
         if (collision.tag == "Checkpoint")
         {
-            //respawnPoint = transform.position;
             SaveDataWithLogs();
         }
     }
+
+    /*---I have tried to separete the methods below to a separate SaveAndLoad class,
+     but I have always got a object reference to null exception for some reason...---*/
 
     public void SaveDataWithLogs()
     {

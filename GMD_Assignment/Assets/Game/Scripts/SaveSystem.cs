@@ -4,7 +4,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem
 {
-
     public static void SaveStatsWithLogs(HealthBar health, int coin, HealthPotion potion, Respawn respawn, PickableLogsScript logs,  float[] camera)
     {
         BinaryFormatter formatter = new BinaryFormatter();
@@ -41,7 +40,6 @@ public static class SaveSystem
             stream.Close();
 
             return data;
-
         }
         else
         {
@@ -49,6 +47,4 @@ public static class SaveSystem
             return null;
         }
     }
-
-
 }

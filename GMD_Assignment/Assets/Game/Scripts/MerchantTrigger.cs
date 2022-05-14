@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MerchantTrigger : MonoBehaviour
@@ -9,7 +7,6 @@ public class MerchantTrigger : MonoBehaviour
     private bool continueButtonPressed = false;
     private bool onTrigger = false;
     private bool canShop = false;
-
     [SerializeField] private int potionPrice = 5;
     private CoinController _coinController;
     private HealthPotion _healthPotion;
@@ -60,7 +57,6 @@ public class MerchantTrigger : MonoBehaviour
         }
     }
 
-
     private void Update()
     {
         if (_playerControl.Player.ContinueDialog.triggered)
@@ -93,7 +89,6 @@ public class MerchantTrigger : MonoBehaviour
             {
                 StartCoroutine(_dialogManager.TypeSentence("You don't have enough coins, Anke!"));
             }
-
         }
     }
 }

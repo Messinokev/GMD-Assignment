@@ -7,7 +7,6 @@ public class SignDialogManager : MonoBehaviour
 {  
     public TextMeshProUGUI forestSignDialog;
     public Animator forestSignAnimator;
-
     private Queue<string> sentences;
 
     void Start()

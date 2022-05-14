@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -7,21 +5,16 @@ public class HealthPotion : MonoBehaviour
 {
     private GameObject _noPotion;
     private GameObject _hasPotion;
-
     public HealthBar healthBar;
-
     public  int potionCount;
     public TextMeshProUGUI potionCountText;
-
     public PlayerControl _playerControl;
-
 
     private void Awake()
     {
         _playerControl = new PlayerControl();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         _noPotion = transform.GetChild(0).gameObject;
@@ -40,7 +33,6 @@ public class HealthPotion : MonoBehaviour
         _playerControl.Disable();
     }
 
-    // Update is called once per frame
     void Update()
     {
         SetPotionCountText();

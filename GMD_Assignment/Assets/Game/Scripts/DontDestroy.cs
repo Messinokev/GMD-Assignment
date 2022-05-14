@@ -1,17 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DontDestroy : MonoBehaviour
 {
     private int _questProgress;
-    private RectTransform emptyFrame;
-    private RectTransform hasLogs;
-    private RectTransform noLogs;
-    private RectTransform hasEgg;
-    private RectTransform noEgg;
     private bool alreadyFound = false;
-
 
     void Start()
     {
@@ -27,7 +19,6 @@ public class DontDestroy : MonoBehaviour
                 }
             }
         }
-
         DontDestroyOnLoad(gameObject);
     }
 

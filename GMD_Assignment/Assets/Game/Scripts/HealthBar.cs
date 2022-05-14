@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
@@ -10,15 +7,12 @@ public class HealthBar : MonoBehaviour
     public int maxHealth;
     public int currentHealth;
     private TextMeshProUGUI HPtext;
-
     public Animator animator;
     private static readonly int takeDamamge = Animator.StringToHash("take_damage");
     private static readonly int die = Animator.StringToHash("die");
     private static readonly int idle = Animator.StringToHash("idle");
-
     public bool dead;
-
-    Respawn respawn;
+    private Respawn respawn;
 
     private void Start()
     {

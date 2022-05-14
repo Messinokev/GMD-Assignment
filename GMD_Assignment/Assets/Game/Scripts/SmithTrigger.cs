@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SmithTrigger : MonoBehaviour
@@ -11,23 +9,17 @@ public class SmithTrigger : MonoBehaviour
     public Dialog duringSecondQuest;
     public Dialog secondQuestDone;
     public Dialog winAndRealaseLater;
-
     private int _questProgress;
-
     public PlayerControl _playerControl;
     private bool continueButtonPressed = false;
     private bool onTrigger = false;
-
     public bool logsPickedUp = false;
-
     private DialogManager _dialogManager;
-
     private SpriteRenderer furnaceOffSpriteRenderer;
     private RectTransform emptyFrameRectTrans;
     private RectTransform haslogsRectTrans;
     private RectTransform nologsRectTrans;
     private Vector2 noSeeVector;
-
     private PlayerController playerController;
 
     private void Awake()
@@ -68,33 +60,29 @@ public class SmithTrigger : MonoBehaviour
 
     public void TriggerDialogWithSmith()
     {
-        if (_questProgress == 0)
+        switch (_questProgress)
         {
-            _dialogManager.StartDialogWithSmith(firstQuest);
-        }
-        if (_questProgress == 1)
-        {
-            _dialogManager.StartDialogWithSmith(duringQuests);
-        }
-        if (_questProgress == 2)
-        {
-            _dialogManager.StartDialogWithSmith(firstQuestDone);
-        }
-        if (_questProgress == 3)
-        {
-            _dialogManager.StartDialogWithSmith(secondQuest);
-        }
-        if (_questProgress == 4)
-        {
-            _dialogManager.StartDialogWithSmith(duringSecondQuest);
-        }
-        if (_questProgress == 5)
-        {
-            _dialogManager.StartDialogWithSmith(secondQuestDone);
-        }
-        if (_questProgress == 6)
-        {
-            _dialogManager.StartDialogWithSmith(winAndRealaseLater);
+            case 0:
+                _dialogManager.StartDialogWithSmith(firstQuest);
+                break;
+            case 1:
+                _dialogManager.StartDialogWithSmith(duringQuests);
+                break;
+            case 2:
+                _dialogManager.StartDialogWithSmith(firstQuestDone);
+                break;
+            case 3:
+                _dialogManager.StartDialogWithSmith(secondQuest);
+                break;
+            case 4:
+                _dialogManager.StartDialogWithSmith(duringSecondQuest);
+                break;
+            case 5:
+                _dialogManager.StartDialogWithSmith(secondQuestDone);
+                break;
+            case 6:
+                _dialogManager.StartDialogWithSmith(winAndRealaseLater);
+                break;
         }
     }
 
@@ -104,7 +92,6 @@ public class SmithTrigger : MonoBehaviour
         {
             continueButtonPressed = false;
             onTrigger = true;
-
             TriggerDialogWithSmith();
         }
     }
@@ -114,7 +101,6 @@ public class SmithTrigger : MonoBehaviour
         if (collision.tag == "Player" && tag == "Smith")
         {
             onTrigger = false;
-
             _dialogManager.EndDialogWithSmith();
         }
     }

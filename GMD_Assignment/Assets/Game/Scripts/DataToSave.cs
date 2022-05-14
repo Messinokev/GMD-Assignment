@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 [System.Serializable]
 public class DataToSave
@@ -48,5 +45,4 @@ public class DataToSave
         cameraPosition[1] = camera[1];
         cameraPosition[2] = camera[2];
     }
-
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnterToForest : MonoBehaviour
@@ -17,12 +15,12 @@ public class EnterToForest : MonoBehaviour
         if (_questProgress > 0 && _questProgress < 3)
         {
             GameObject.Find("ForestSign").GetComponent<BoxCollider2D>().enabled = false;
-            this.GetComponent<BoxCollider2D>().enabled = false;
+            GetComponent<BoxCollider2D>().enabled = false;
         }
         else
         {
             GameObject.Find("ForestSign").GetComponent<BoxCollider2D>().enabled = true;
-            this.GetComponent<BoxCollider2D>().enabled = true;
+            GetComponent<BoxCollider2D>().enabled = true;
         }
     }
 

@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PickableEggScript : MonoBehaviour
 {
     public bool pickedUp = false;
     private int _questProgress;
-
     
     void Start()
     {

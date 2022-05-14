@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CPLanternHandler : MonoBehaviour
 {
-
     private Transform cp1LanternOff;
     private Transform cp2LanternOff;
     private Transform cp3LanternOff;
     private Transform cp4LanternOff;
-
     private Vector3 lanternOff;
     private Vector3 lanternOn;
-
 
     void Start()
     {

@@ -8,14 +8,11 @@ public class DialogManager : MonoBehaviour
     public TextMeshProUGUI merchantNPCNameText;
     public TextMeshProUGUI merchantDialogText;
     public TextMeshProUGUI merchantContinueText;
-
     public TextMeshProUGUI smithNPCNameText;
     public TextMeshProUGUI smithDialogText;
     public TextMeshProUGUI smithContinueText;
-
     public Animator merchantAnimator;
     public Animator smithAnimator;
-
     private Queue<string> sentences;
 
     void Start()
@@ -36,7 +33,6 @@ public class DialogManager : MonoBehaviour
         {
             sentences.Enqueue(sentence);
         }
-
         DisplayNextSentence();
     }
 
@@ -53,7 +49,6 @@ public class DialogManager : MonoBehaviour
         {
             sentences.Enqueue(sentence);
         }
-
         DisplayNextSentence();
     }
 
@@ -68,7 +63,6 @@ public class DialogManager : MonoBehaviour
             merchantContinueText.text = "";
             smithContinueText.text = "";
         }
-
         string sentence = sentences.Dequeue();
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
@@ -101,7 +95,4 @@ public class DialogManager : MonoBehaviour
         smithDialogText.text = "";
         smithContinueText.text = "";
     }
-
-
-
 }
