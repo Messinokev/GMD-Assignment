@@ -45,7 +45,7 @@ public class PickableEggScript : MonoBehaviour
         if (collision.transform.CompareTag("Player"))
         {
             GameObject.Find("NoEgg").GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 0f);
-            GameObject.Find("HasEgg").GetComponent<RectTransform>().sizeDelta = new Vector2(55f, 65f);
+            GameObject.Find("HasEgg").GetComponent<RectTransform>().sizeDelta = new Vector2(65f, 75f);
             PlayerPrefs.SetInt("PickedEgg", 1);
             pickedUp = true;
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
@@ -63,7 +63,7 @@ public class PickableEggScript : MonoBehaviour
         else if (_questProgress > 3)
         {
             PlayerPrefs.SetInt("PickedEgg", 0);
-            GameObject.Find("NoEgg").GetComponent<RectTransform>().sizeDelta = new Vector2(55f, 65f);
+            GameObject.Find("NoEgg").GetComponent<RectTransform>().sizeDelta = new Vector2(65f, 75f);
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
             gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
         }

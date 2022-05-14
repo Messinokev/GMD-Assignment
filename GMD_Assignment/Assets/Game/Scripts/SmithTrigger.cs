@@ -151,7 +151,7 @@ public class SmithTrigger : MonoBehaviour
             if (_questProgress == 3)
             {
                 emptyFrameRectTrans.sizeDelta = noSeeVector;
-                GameObject.Find("NoEgg").GetComponent<RectTransform>().sizeDelta = new Vector2(55f, 65f);
+                GameObject.Find("NoEgg").GetComponent<RectTransform>().sizeDelta = new Vector2(65f, 75f);
                 haslogsRectTrans.sizeDelta = noSeeVector;
                 nologsRectTrans.sizeDelta = noSeeVector;
             }
