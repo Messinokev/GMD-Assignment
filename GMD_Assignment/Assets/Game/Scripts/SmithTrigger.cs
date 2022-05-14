@@ -10,6 +10,7 @@ public class SmithTrigger : MonoBehaviour
     public Dialog secondQuest;
     public Dialog duringSecondQuest;
     public Dialog secondQuestDone;
+    public Dialog winAndRealaseLater;
 
     private int _questProgress;
 
@@ -90,6 +91,10 @@ public class SmithTrigger : MonoBehaviour
         if (_questProgress == 5)
         {
             _dialogManager.StartDialogWithSmith(secondQuestDone);
+        }
+        if (_questProgress == 6)
+        {
+            _dialogManager.StartDialogWithSmith(winAndRealaseLater);
         }
     }
 

@@ -58,7 +58,7 @@ public class PickableLogsScript : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
-        else if(_questProgress > 0)
+        else if (_questProgress > 0)
         {
             PlayerPrefs.SetInt("PickedLogs", 0);
             GameObject.Find("NoLogs").GetComponent<RectTransform>().sizeDelta = new Vector2(65f, 50f);
