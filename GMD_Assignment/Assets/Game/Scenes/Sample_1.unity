@@ -2789,28 +2789,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &202001205 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1319730438709805561, guid: 55cd6255b6172e145acf056a22ff6907, type: 3}
-  m_PrefabInstance: {fileID: 1319730438509152972}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &202001208 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1319730438709805556, guid: 55cd6255b6172e145acf056a22ff6907, type: 3}
   m_PrefabInstance: {fileID: 1319730438509152972}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &202001209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 202001205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce705d95b7bde8b4997bf00587d1933a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &209059404
 GameObject:
   m_ObjectHideFlags: 0
@@ -33534,24 +33517,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1319730438709805558, guid: 55cd6255b6172e145acf056a22ff6907, type: 3}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1319730438709805558, guid: 55cd6255b6172e145acf056a22ff6907, type: 3}
-      propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1319730438709805561, guid: 55cd6255b6172e145acf056a22ff6907, type: 3}
       propertyPath: m_Name
       value: Coin
       objectReference: {fileID: 0}
-    - target: {fileID: 1319730438709805561, guid: 55cd6255b6172e145acf056a22ff6907, type: 3}
-      propertyPath: m_TagString
-      value: Coin
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1319730438709805557, guid: 55cd6255b6172e145acf056a22ff6907, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55cd6255b6172e145acf056a22ff6907, type: 3}
 --- !u!114 &2799172289625566068
 MonoBehaviour:
